@@ -749,6 +749,51 @@ $("#getSections").click(function () {
     });
 });
 
+// // add sections manullay
+// $("#addSections").click(function () {
+
+
+//     var addSectionsButton = $("#getSections");
+//     var loader = $(".loader2");
+//     //Empty sections table
+//     $("#sections-table tbody tr").remove();
+//     //Empty sections array
+//     if (sections.array.length > 0) {
+//         sections.emptyArray();
+//     }
+//     //Remove get sections button - for not to receive more than one request at a time.
+//     addSectionsButton.attr('disabled', 'true');
+//     addSectionsButton.toggleClass('blue');
+//     addSectionsButton.toggleClass('gray');
+//     addSectionsButton.css('cursor', 'not-allowed');
+//     //Show loader
+//     loader.toggleClass("d-none");
+
+//     swal({
+//         title: 'إضافة الشعب يدويًا',
+//         text: 'ادخل معلومات الشعبة',
+//         input: 'select',
+//         inputOptions: {
+//           '1': 'Tier 1',
+//           '2': 'Tier 2',
+//           '3': 'Tier 3'
+//         },
+//         inputPlaceholder: 'Select from dropdown',
+//         showCancelButton: true,
+//         buttons: {
+//           stop: {
+//           text: "Cancel",
+//           className: "red-modal-button",
+//           },
+//           ok: {
+//             text: "Register",
+//             value: "ok",
+//             className: "green-modal-button",
+//           },
+//         }
+//       });
+// });
+
 
 // Add section button = send section to table and draw it to the table
 // "Delegated events" adds event listeners to elements added after page load is completed.
