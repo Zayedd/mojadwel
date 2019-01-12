@@ -783,28 +783,28 @@ $("#addSections").click(function () {
         // showCancelButton: true,
         html:
         '<p>  رمز المقرر </p> '+
-        '<select name="course-dep"  ><option value="null" disabled selected hidden>اختر</option><optgroup label="كلية الحاسب"><option value="cs">عال (علوم حاسب)</option><option value="is">نال (نظم معلومات)</option><option value="it">تال (تقنية معلومات)</option><option value="infoStudies">دال (دراسات المعلومات)</option><option value="infoMgmt">دام (إدارة المعلومات)</option></optgroup><optgroup label="كلية العلوم"><option value="math">ريض (رياضيات)</option><option value="stat">احص (إحصاء)</option><option value="phys">فيز (فيزياء)</option></optgroup><optgroup label="كلية الإدراة"><option value="acco">حسب (محاسبة)</option><option value="econ">قصد (اقتصاد)</option><option value="mgmt">دار (إدارة أعمال)</option></optgroup><optgroup label="كلية اللغات"><option value="eng">نجل (إنجليزي)</option></optgroup><optgroup label="كليات أخرى"><option value="qur">قرا (قرآن)</option><option value="aqd">عقد (توحيد)</option><option value="fqh">فقه</option><option value="nho">نحو</option><option value="elm">علم (مهارات اتصال)</option><option value="trk">ترخ (سيرة نبوية)</option><option value="thqf">ثقف (ثقافة إسلامية)</option><option value="adb">ادب</option></optgroup></select>' +
+        '<select id="course-dep"  ><option value="null" disabled selected hidden>اختر</option><optgroup label="كلية الحاسب"><option value="cs">عال (علوم حاسب)</option><option value="is">نال (نظم معلومات)</option><option value="it">تال (تقنية معلومات)</option><option value="infoStudies">دال (دراسات المعلومات)</option><option value="infoMgmt">دام (إدارة المعلومات)</option></optgroup><optgroup label="كلية العلوم"><option value="math">ريض (رياضيات)</option><option value="stat">احص (إحصاء)</option><option value="phys">فيز (فيزياء)</option></optgroup><optgroup label="كلية الإدراة"><option value="acco">حسب (محاسبة)</option><option value="econ">قصد (اقتصاد)</option><option value="mgmt">دار (إدارة أعمال)</option></optgroup><optgroup label="كلية اللغات"><option value="eng">نجل (إنجليزي)</option></optgroup><optgroup label="كليات أخرى"><option value="qur">قرا (قرآن)</option><option value="aqd">عقد (توحيد)</option><option value="fqh">فقه</option><option value="nho">نحو</option><option value="elm">علم (مهارات اتصال)</option><option value="trk">ترخ (سيرة نبوية)</option><option value="thqf">ثقف (ثقافة إسلامية)</option><option value="adb">ادب</option></optgroup></select>' +
         '<br> <br>'+
         '<p> رقم المقرر </p> '+
-        '<select name="course-no"  ><option value="null" disabled selected hidden>اختر</option></select>' +
+        '<select id="course-no"  ><option value="null" disabled selected hidden>اختر</option></select>' +
         '<br> <br>'+
         '<p> الأيــام </p> '+
         '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>'+
         '<br>'+
         '<p> أوقات المحاضرات </p><p> تبدأ في : </p> '+
-        '<select name="lect-start"  ><option value="null" disabled selected hidden>اختر وقت البدء</option></select>' +
+        '<select id="lect-start"  ><option value="null" disabled selected hidden>اختر وقت البدء</option></select>' +
         '<br>'+
         '<p> تنتهي في : </p> '+
-        '<select name="lect-start"  ><option value="null" disabled selected hidden>اختر وقت الإنتهاء</option></select>' +
+        '<select id="lect-start"  ><option value="null" disabled selected hidden>اختر وقت الإنتهاء</option></select>' +
         '<br>'+
         '<p> القاعة</p> '+
-        '<input name="class" placeholder = "ادخل رقم القاعة" ></select>' +
+        '<input id="class" placeholder = "ادخل رقم القاعة" ></select>' +
         '<br>'+
         '<p> الإختبار النهائي </p><p> تاريخ  </p> '+
-        '<input name="final-date" placeholder = "ادخل تاريخ الإختبار" ></select>' +
+        '<input id="final-date" placeholder = "ادخل تاريخ الإختبار" ></select>' +
         '<br>'+
         '<p> الساعة </p> '+
-        '<select name="final-time"  ><option value="null" disabled selected hidden>اختر وقت الإختبار</option></select>' ,
+        '<select id="final-time"  ><option value="null" disabled selected hidden>اختر وقت الإختبار</option></select>' ,
         buttons: {
           stop: {
           text: "Cancel",
