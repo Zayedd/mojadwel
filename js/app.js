@@ -751,11 +751,33 @@ $("#getSections").click(function () {
 
 // add sections manullay
 $("#addSections").click(function () {
+    // This variable stores chosen dep to deal with section number patterns problems (17x - 37x - ...)
+    var chosenCourseDep = $("select[name='course-dep'] option:selected")[0].value;
+    // This variable used to get credit hours for a course.
+    var chosenCourseNumber = Number($("select[name='course-no'] option:selected").text().substring(0,3));
 
+    // If didn't choose gender and dep and course warn the user
+    if (isMale === undefined || $("select[name='course-dep']").val() === null || $("select[name='course-no']").val() === null) {
+        swal("يجب عليك اختيار (طالب/طالبة) و (رمز المقرر) و (رقم المقرر) قبل عرض الشعب المتاحة", {
+            button: "حسناً",
+            icon: "info"
+        });
+        return;
+    }
+
+    // Discard trk sections due to strange section number patterns.
+    if (isMale && chosenCourseDep === "trk") {
+        swal("نواجه مشكلة في مادة السيرة النبوية، من فضلك راجع شعب السيرة النبوية من ملف الشعب.", {
+            button: "حسناً",
+            icon: "info"
+        });
+
+        return;
+    }
 
     var addSectionsButton = $("#addSections");
     var loader = $(".loader2");
-    // var sections = $("select[name='course-dep']");
+    var section = $("select[name='course-dep'] option:selected").text() + ' - ' + $("select[name='course-no'] option:selected").text();
     //Empty sections table
     $("#sections-table tbody tr").remove();
     //Empty sections array
@@ -770,55 +792,84 @@ $("#addSections").click(function () {
     //Show loader
     loader.toggleClass("d-none");
 
-    swal({
-        title: 'إضافة الشعب يدويًا',
-        text: 'ادخل معلومات الشعبة',
-        // input: 'select',
-        // inputOptions: {
-        //   '1': 'Tier 1',
-        //   '2': 'Tier 2',
-        //   '3': 'Tier 3'
-        // },
-        // inputPlaceholder: 'Select from dropdown',
-        // showCancelButton: true,
-        html:
-        '<p>  رمز المقرر </p> '+
-        '<select id="course-dep"  ><option value="null" disabled selected hidden>اختر</option><optgroup label="كلية الحاسب"><option value="cs">عال (علوم حاسب)</option><option value="is">نال (نظم معلومات)</option><option value="it">تال (تقنية معلومات)</option><option value="infoStudies">دال (دراسات المعلومات)</option><option value="infoMgmt">دام (إدارة المعلومات)</option></optgroup><optgroup label="كلية العلوم"><option value="math">ريض (رياضيات)</option><option value="stat">احص (إحصاء)</option><option value="phys">فيز (فيزياء)</option></optgroup><optgroup label="كلية الإدراة"><option value="acco">حسب (محاسبة)</option><option value="econ">قصد (اقتصاد)</option><option value="mgmt">دار (إدارة أعمال)</option></optgroup><optgroup label="كلية اللغات"><option value="eng">نجل (إنجليزي)</option></optgroup><optgroup label="كليات أخرى"><option value="qur">قرا (قرآن)</option><option value="aqd">عقد (توحيد)</option><option value="fqh">فقه</option><option value="nho">نحو</option><option value="elm">علم (مهارات اتصال)</option><option value="trk">ترخ (سيرة نبوية)</option><option value="thqf">ثقف (ثقافة إسلامية)</option><option value="adb">ادب</option></optgroup></select>' +
-        '<br> <br>'+
-        '<p> رقم المقرر </p> '+
-        '<select id="course-no"  ><option value="null" disabled selected hidden>اختر</option></select>' +
-        '<br> <br>'+
-        '<p> الأيــام </p> '+
-        '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>'+
-        '<br>'+
-        '<p> أوقات المحاضرات </p><p> تبدأ في : </p> '+
-        '<select id="lect-start"  ><option value="null" disabled selected hidden>اختر وقت البدء</option></select>' +
-        '<br>'+
-        '<p> تنتهي في : </p> '+
-        '<select id="lect-start"  ><option value="null" disabled selected hidden>اختر وقت الإنتهاء</option></select>' +
-        '<br>'+
-        '<p> القاعة</p> '+
-        '<input id="class" placeholder = "ادخل رقم القاعة" ></select>' +
-        '<br>'+
-        '<p> الإختبار النهائي </p><p> تاريخ  </p> '+
-        '<input id="final-date" placeholder = "ادخل تاريخ الإختبار" ></select>' +
-        '<br>'+
-        '<p> الساعة </p> '+
-        '<select id="final-time"  ><option value="null" disabled selected hidden>اختر وقت الإختبار</option></select>' ,
-        buttons: {
-          stop: {
-          text: "Cancel",
-          className: "red-modal-button",
+    Swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        progressSteps: ['1', '2', '3' ,'4','5','6']
+      }).queue([
+        {
+          title: 'إضافة شعبة يدويًا',
+          text: 'الأيام',
+          html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+        },
+        {
+            title: 'إضافة شعبة يدويًا',
+            text: 'أوقات المحاضرات تبدأ في  :',
+            input: 'select',
+            inputOptions: {
+                '7': '07:00 AM',
+                '8': '08:00 AM',
+                '9': '09:00 AM',
+                '10': '10:00 AM',
+              },
+              inputPlaceholder: 'اختر وقت البداية',
+              showCancelButton: true,
           },
-          ok: {
-            text: "Register",
-            value: "ok",
-            className: "green-modal-button",
+          {
+            title: 'إضافة شعبة يدويًا',
+            text: 'أوقات المحاضرات تنتهي في  :',
+            input: 'select',
+            inputOptions: {
+                '7': '07:00 AM',
+                '8': '08:00 AM',
+                '9': '09:00 AM',
+                '10': '10:00 AM',
+              },
+              inputPlaceholder: 'اختر وقت الانتهاء',
+              showCancelButton: true,
           },
+          {
+            title: 'إضافة شعبة يدويًا',
+            text: ' القاعة :',
+            input: 'text',
+              inputPlaceholder: 'ادخل رقم القاعة ',
+              showCancelButton: true,
+          },
+          {
+            title: 'إضافة شعبة يدويًا',
+            text: ' تاريخ الاختبار النهائي :',
+            input: 'text',
+              inputPlaceholder: 'ادخل يوم الاختبار',
+              showCancelButton: true,
+          },
+          {
+            title: 'إضافة شعبة يدويًا',
+            text: 'وقت الاختبار النهائي   :',
+            input: 'select',
+            inputOptions: {
+                '7': '07:00 AM',
+                '8': '08:00 AM',
+                '9': '09:00 AM',
+                '10': '10:00 AM',
+              },
+              inputPlaceholder: 'اختر وقت الاختبار',
+              showCancelButton: true,
+          },
+      ]).then((result) => {
+        if (result.value) {
+          Swal({
+            title: 'All done!',
+            html:
+              'Your informations: <pre><code>' +
+                JSON.stringify(result.value) +
+              '</code></pre>',
+            confirmButtonText: 'Good!'
+          })
         }
-      });
-});
+      })
 
+
+});
 
 // Add section button = send section to table and draw it to the table
 // "Delegated events" adds event listeners to elements added after page load is completed.
