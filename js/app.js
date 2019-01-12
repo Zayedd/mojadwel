@@ -409,6 +409,98 @@ function addSectionToTimetable(addSectionButton, rowID) {
         checkForFinalExamConflicts(table.array[table.array.length - 1]);
     }
 }
+function addSectionToTimetableManually(obj) {
+    // Check for time conflict
+    var conflictMessage = "يوجد تعارض مع الشعب التالية : \n";
+    var conflictExists = false;
+    table.array.forEach(function (t) {
+        t.time.forEach(function (t2) {
+            obj.time.forEach(function (t3) {
+                if (t3.day === t2.day) {
+                    // loop through times array to detect conflict.
+                    loop1:
+                        for (var i = 0; i < t2.times.length; i++) {
+                            for (var j = 0; j < t3.times.length; j++) {
+                                if (t2.times[i] === t3.times[j]) {
+                                    conflictMessage += t.dep + " " + t.number + " - " + t.section + " : يوم " + getDayOfLecture(t2.day) + " " + t2.times[i].substring(0, 2) + ':' + t2.times[i].substring(2, 4) + "\n";
+                                    conflictExists = true;
+                                    break loop1;
+                                }
+                            }
+                        }
+                }
+            });
+        });
+    });
+
+    if (conflictExists) {
+        swal("هناك تعارض!", conflictMessage, "error", {button: "حسناً"});
+    } else {
+        table.array.push(obj);
+        table.array[table.array.length - 1].id = id++;
+        DB.addToDB(table.array[table.array.length - 1]);
+        table.array[table.array.length - 1].color = getColor();
+
+        // Update total credit hours
+        totalCredits += table.array[table.array.length - 1].creditHours;
+        $("#total-credits").html(totalCredits);
+
+        var lastElementInTableArray = table.array[table.array.length - 1];
+        var selectedCell;
+        for (var i = 0; i < lastElementInTableArray.time.length; i++) {
+            for (var j = 0; j < lastElementInTableArray.time[i].times.length; j++) {
+                selectedCell = $('#timetable tbody tr#row' + lastElementInTableArray.time[i].times[j] + ' td.day' + lastElementInTableArray.time[i].day);
+                if (j !== 0) {
+                    selectedCell.remove();
+                } else {
+                    selectedCell.html(
+                        '<span class="float-right">' + lastElementInTableArray.dep + ' ' + lastElementInTableArray.number + ' - ' + lastElementInTableArray.section + '</span>' +
+                        '<span class="float-left d-none d-md-block">' + lastElementInTableArray.time[i].times[0].substring(0, 2) + ':' + lastElementInTableArray.time[i].times[0].substring(2, 4) + '</span><br>' +
+                        '<span>' + (lastElementInTableArray.name.length > 15 ? lastElementInTableArray.name.substring(0, 15) + "..." : lastElementInTableArray.name) + '</span><br>' +
+                        '<span class="float-right">' + lastElementInTableArray.time[i].location + '</span>' +
+                        '<span class="float-left d-none d-md-block">' + getEndOfLectureTimeForTimetable(lastElementInTableArray.time[i].times[lastElementInTableArray.time[i].times.length - 1].substring(0, 2), lastElementInTableArray.time[i].times[lastElementInTableArray.time[i].times.length - 1].substring(2, 4)) + '</span>'
+                    );
+                    selectedCell.css('background-color', "");
+                    selectedCell.attr('style', 'background-color: ' + lastElementInTableArray.color);
+                    selectedCell.attr('rowspan', lastElementInTableArray.time[i].times.length);
+                    selectedCell.addClass("cell-" + lastElementInTableArray.id + "-table");
+                    selectedCell.addClass("filled-cell");
+                }
+            }
+        }
+
+        $("#added-sections-table tr:nth-child(1)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.dep + "-" + lastElementInTableArray.number + "-" + lastElementInTableArray.section + '</td>');
+        $("#added-sections-table tr:nth-child(4)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.crn + '</td>');
+        $("#added-sections-table tr:nth-child(2)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.creditHours + '</td>');
+        $("#added-sections-table tr:nth-child(3)").append('<td class="cell-' + lastElementInTableArray.id + '" dir="ltr">' + lastElementInTableArray.finalExam.date.substring(0, 10) + "<br>" + lastElementInTableArray.finalExam.time + '</td>');
+        $("#added-sections-table tr:nth-child(5)").append('<td class="cell-' + lastElementInTableArray.id + '"><button type="button" class="remove-button">-</button></td>');
+
+        // Show added sections table when first section is added
+        if (table.array.length === 1) {
+            $("#added-sections-table").toggleClass("d-none");
+            $("#total-credits-table").toggleClass("d-none");
+        }
+
+        swal("تم إضافة الشعبة إلى الجدول بنجاح!", {
+            buttons: false,
+            timer: 1000,
+            icon: "success"
+        });
+
+        // Alert the user if exceeded 19 credits
+        if (totalCredits > 19) {
+            setTimeout(() => {
+                swal("تنبيه!", "لقد تجاوزت الحد المسموح به في عدد الوحدات(١٩ وحدة)", {
+                    buttons: "حسناً",
+                    icon: "error"
+                });
+            }, 1000);
+        }
+
+        // Check for final exams confilcts
+        checkForFinalExamConflicts(table.array[table.array.length - 1]);
+    }
+}
 function initTimeTable(sectionsArr) {
     if (sectionsArr.length > 0) {
         sectionsArr.forEach(function (t) {
