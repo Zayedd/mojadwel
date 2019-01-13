@@ -14,8 +14,8 @@ var totalCredits = 0;
 /**==========================================**/
 function showCourseNumbers(arry) {
     $("option[value='courseNumber']").remove();
-    arry.forEach(function(element){
-        $("select[name='course-no']").append("<option value='courseNumber'>" + element.number + " - " + element.name +"</option>");
+    arry.forEach(function (element) {
+        $("select[name='course-no']").append("<option value='courseNumber'>" + element.number + " - " + element.name + "</option>");
     });
 }
 function getTextTime(tbody) {
@@ -23,7 +23,7 @@ function getTextTime(tbody) {
     var allTRs = $(tbody).find('tr');
     var allTDs;
     var days, time;
-    for(var i = 1; i < allTRs.length; i++){
+    for (var i = 1; i < allTRs.length; i++) {
         allTDs = $(allTRs[i]).find('td');
         // Return an empty times array when no time is provided
         if (
@@ -33,19 +33,19 @@ function getTextTime(tbody) {
             return "لا يوجد محاضرة";
         }
         // Exclude Exam Rows
-        if ($(allTDs[0]).text() === "اختبار"){
+        if ($(allTDs[0]).text() === "اختبار") {
             continue;
         }
         time = $(allTDs[1]).text();
 
         if (time.indexOf(":") === 2 && time.lastIndexOf(":") === 13) {
-            time = time.substring(11,16) + ' - ' + time.substring(0,5);
+            time = time.substring(11, 16) + ' - ' + time.substring(0, 5);
         } else if (time.indexOf(":") === 2 && time.lastIndexOf(":") === 12) {
-            time = time.substring(10,15) + ' - ' + time.substring(0,5);
+            time = time.substring(10, 15) + ' - ' + time.substring(0, 5);
         } else if (time.indexOf(":") === 1 && time.lastIndexOf(":") === 11) {
-            time = time.substring(10,14) + ' - ' + time.substring(0,4);
+            time = time.substring(10, 14) + ' - ' + time.substring(0, 4);
         } else if (time.indexOf(":") === 1 && time.lastIndexOf(":") === 12) {
-            time = time.substring(10,15) + ' - ' + time.substring(0,4);
+            time = time.substring(10, 15) + ' - ' + time.substring(0, 4);
         }
         days = $(allTDs[2]).text();
         textTime += time + " : " + days + "<br/>";
@@ -74,7 +74,7 @@ function getTimesArray(tbody) {
     var location = "";
     var allTRs = $(tbody).find('tr');
     var allTDs;
-    for(var i = 1; i < allTRs.length; i++){
+    for (var i = 1; i < allTRs.length; i++) {
         allTDs = $(allTRs[i]).find('td');
         // Return an empty times array when no time is provided
         if (
@@ -84,11 +84,11 @@ function getTimesArray(tbody) {
             return [];
         }
         // Exclude Exam Rows
-        if ($(allTDs[0]).text() === "اختبار"){
+        if ($(allTDs[0]).text() === "اختبار") {
             continue;
         }
         // Location
-        location = isMale? $(allTDs[3]).text().substring(20) : $(allTDs[3]).text().substring(28);
+        location = isMale ? $(allTDs[3]).text().substring(20) : $(allTDs[3]).text().substring(28);
         // Time
         var days = $(allTDs[2]).text();
         var fromTo = $(allTDs[1]).text();
@@ -97,8 +97,8 @@ function getTimesArray(tbody) {
         var lastIndexOfColon = fromTo.lastIndexOf(":");
         var endHour = Number(fromTo.substring(lastIndexOfColon - 2, lastIndexOfColon));
         var endMinute = Number(fromTo.substring(lastIndexOfColon + 1, lastIndexOfColon + 3));
-        while ( !(startHour === endHour && startMinute === endMinute) ) {
-            timeSlots.push((String(startHour).length === 1? "0" + String(startHour) : String(startHour)) + (String(startMinute).length === 1? "0" + String(startMinute) : String(startMinute)));
+        while (!(startHour === endHour && startMinute === endMinute)) {
+            timeSlots.push((String(startHour).length === 1 ? "0" + String(startHour) : String(startHour)) + (String(startMinute).length === 1 ? "0" + String(startMinute) : String(startMinute)));
             startMinute += 5;
             if (startMinute === 60) {
                 startMinute = 0;
@@ -120,7 +120,7 @@ function getTimesArray(tbody) {
 }
 function getColor() {
     for (var h = 0; h < colors.length; h++) {
-        if (colors[h].isUsed == false){
+        if (colors[h].isUsed == false) {
             colors[h].isUsed = true;
             return colors[h].color;
         }
@@ -149,11 +149,11 @@ function getEndOfLectureTimeForTimetable(hours, minutes) {
     minutes = String(minutes);
     if (minutes.length === 1) {
         return hours + ":" + "0" + minutes;
-    } else if (minutes === "60"){
+    } else if (minutes === "60") {
         var hoursPlusOne = String(Number(hours) + 1);
         if (hoursPlusOne === "13")
             hoursPlusOne = "1";
-        return (hoursPlusOne.length === 2? hoursPlusOne : "0" + hoursPlusOne) + ":" + "00";
+        return (hoursPlusOne.length === 2 ? hoursPlusOne : "0" + hoursPlusOne) + ":" + "00";
     } else {
         return hours + ":" + minutes;
     }
@@ -195,38 +195,38 @@ function getFinalExam(tbody) {
     var allTDs;
     var time = "";
     var date = "لا يوجد";
-    for(var i = 1; i < allTRs.length; i++){
+    for (var i = 1; i < allTRs.length; i++) {
         allTDs = $(allTRs[i]).find('td');
-        if ($(allTDs[0]).text() === "اختبار"){
+        if ($(allTDs[0]).text() === "اختبار") {
             time = $(allTDs[1]).text();
             date = $(allTDs[4]).text();
         }
     }
-    return {time: time, date: date};
+    return { time: time, date: date };
 }
 function checkForFinalExamConflicts(lastAddedElement) {
     if (lastAddedElement.finalExam.date === "لا يوجد") {
         return;
     }
 
-    table.array.forEach(function(params) {
+    table.array.forEach(function (params) {
         if (params.finalExam.date === lastAddedElement.finalExam.date && lastAddedElement.crn !== params.crn) {
             if (params.finalExam.time === lastAddedElement.finalExam.time) {
                 setTimeout(() => {
                     swal("لديك تعارض في وقت الاختبار النهائي!", "هناك مادتان لهما نفس يوم ووقت الاختبار النهائي:\n" +
-                                                                params.dep + "-" + params.number + "-" + params.name + "\n" +
-                                                                lastAddedElement.dep + "-" + lastAddedElement.number + "-" + lastAddedElement.name, {
-                        buttons: "حسناً",
-                        icon: "error"
-                    });
+                        params.dep + "-" + params.number + "-" + params.name + "\n" +
+                        lastAddedElement.dep + "-" + lastAddedElement.number + "-" + lastAddedElement.name, {
+                            buttons: "حسناً",
+                            icon: "error"
+                        });
                 }, 1000);
             } else {
                 setTimeout(() => {
                     swal("لديك اختباران نهائيان في نفس اليوم!", params.dep + "-" + params.number + "-" + params.name + "\n" +
-                                                                lastAddedElement.dep + "-" + lastAddedElement.number + "-" + lastAddedElement.name, {
-                        buttons: "حسناً",
-                        icon: "error"
-                    });
+                        lastAddedElement.dep + "-" + lastAddedElement.number + "-" + lastAddedElement.name, {
+                            buttons: "حسناً",
+                            icon: "error"
+                        });
                 }, 1000);
             }
         }
@@ -251,7 +251,7 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
     var lastAddedSection = sections.array[sections.array.length - 1];
     $("table#sections-table tbody").append(
         "<tr id=\"" + sectionID + "\">" +
-        "<td>"+ lastAddedSection.dep + " - " +
+        "<td>" + lastAddedSection.dep + " - " +
         lastAddedSection.number + " - " +
         lastAddedSection.name + "</td>" +
         "<td>" + lastAddedSection.creditHours + "</td>" +
@@ -287,7 +287,7 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
         for (var i = 0; i < allTitles.length; i++) {
             sectionDeatils = $(allTitles[i]).text().split(" - ");
             if (
-                Math.floor(sectionDeatils[3]/10) === 17
+                Math.floor(sectionDeatils[3] / 10) === 17
                 ||
                 (chosenCourseDep == "cs" && chosenCourseNumber === 141 && sectionDeatils[3] === "071")
             ) {
@@ -300,11 +300,11 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
         for (var i = 0; i < allTitles.length; i++) {
             sectionDeatils = $(allTitles[i]).text().split(" - ");
             if (
-                Math.floor(sectionDeatils[3]/10) === 37
+                Math.floor(sectionDeatils[3] / 10) === 37
                 ||
                 (
                     (chosenCourseDep == "it" || chosenCourseDep == "nho" || chosenCourseDep == "mgmt" || chosenCourseDep == "phys" || chosenCourseDep == "eng" || chosenCourseDep == "cs")
-                    && Math.floor(sectionDeatils[3]/10) === 27
+                    && Math.floor(sectionDeatils[3] / 10) === 27
                 )
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
@@ -324,22 +324,22 @@ function addSectionToTimetable(addSectionButton, rowID) {
                 if (t3.day === t2.day) {
                     // loop through times array to detect conflict.
                     loop1:
-                        for (var i = 0; i < t2.times.length; i++) {
-                            for (var j = 0; j < t3.times.length; j++) {
-                                if (t2.times[i] === t3.times[j]) {
-                                    conflictMessage += t.dep + " " + t.number + " - " + t.section + " : يوم " + getDayOfLecture(t2.day) + " " + t2.times[i].substring(0, 2) + ':' + t2.times[i].substring(2, 4) + "\n";
-                                    conflictExists = true;
-                                    break loop1;
-                                }
+                    for (var i = 0; i < t2.times.length; i++) {
+                        for (var j = 0; j < t3.times.length; j++) {
+                            if (t2.times[i] === t3.times[j]) {
+                                conflictMessage += t.dep + " " + t.number + " - " + t.section + " : يوم " + getDayOfLecture(t2.day) + " " + t2.times[i].substring(0, 2) + ':' + t2.times[i].substring(2, 4) + "\n";
+                                conflictExists = true;
+                                break loop1;
                             }
                         }
+                    }
                 }
             });
         });
     });
 
     if (conflictExists) {
-        swal("هناك تعارض!", conflictMessage, "error", {button: "حسناً"});
+        swal("هناك تعارض!", conflictMessage, "error", { button: "حسناً" });
     } else {
         addSectionButton.attr('disabled', 'true');
         addSectionButton.toggleClass("btn-secondary");
@@ -464,7 +464,7 @@ function initTimeTable(sectionsArr) {
     }
 }
 $.cssHooks.backgroundColor = {
-    get: function(elem) {
+    get: function (elem) {
         if (elem.currentStyle)
             var bg = elem.currentStyle["background-color"];
         else if (window.getComputedStyle)
@@ -563,10 +563,10 @@ var DB = (function () {
 
     request.onupgradeneeded = function (e) {
         var db = request.result,
-            sectionsStore = db.createObjectStore("SectionsStore", {keyPath: "crn"});
+            sectionsStore = db.createObjectStore("SectionsStore", { keyPath: "crn" });
 
-        sectionsStore.createIndex("crn", "crn", {unique: true});
-        sectionsStore.createIndex("id", "id", {unique: true});
+        sectionsStore.createIndex("crn", "crn", { unique: true });
+        sectionsStore.createIndex("id", "id", { unique: true });
         sectionsStore.createIndex("creditHours", "creditHours");
         sectionsStore.createIndex("dep", "dep");
         sectionsStore.createIndex("finalExam", "finalExam");
@@ -587,7 +587,7 @@ var DB = (function () {
         store = tx.objectStore("SectionsStore");
 
         var q = store.getAll();
-        q.onsuccess = function() {
+        q.onsuccess = function () {
             // update id if exists some data in db
             q.result.forEach(function (t) {
                 if (t.id >= id)
@@ -623,7 +623,7 @@ var DB = (function () {
 // Get gender and disable changing gender
 $("select[name='gender']").change(function () {
     // Assign Gender
-    isMale = $("select[name='gender'] option:selected").attr("value") === "male"? true : false;
+    isMale = $("select[name='gender'] option:selected").attr("value") === "male" ? true : false;
     // Disable gender choice
     $(this).attr("disabled", "disabled");
     // Enable course department choice
@@ -673,7 +673,7 @@ $("#getSections").click(function () {
     // This variable stores chosen dep to deal with section number patterns problems (17x - 37x - ...)
     var chosenCourseDep = $("select[name='course-dep'] option:selected")[0].value;
     // This variable used to get credit hours for a course.
-    var chosenCourseNumber = Number($("select[name='course-no'] option:selected").text().substring(0,3));
+    var chosenCourseNumber = Number($("select[name='course-no'] option:selected").text().substring(0, 3));
 
     // If didn't choose gender and dep and course warn the user
     if (isMale === undefined || $("select[name='course-dep']").val() === null || $("select[name='course-no']").val() === null) {
@@ -713,40 +713,40 @@ $("#getSections").click(function () {
 
 
     $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144020&subj_in='
-        + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
-        + $("select[name='course-no'] option:selected").text().substring(0,3)
-        + '&schd_in=01') + '&callback=?', function(data){
+        + $("select[name='course-dep'] option:selected").text().substring(0, 3) + '&crse_in='
+        + $("select[name='course-no'] option:selected").text().substring(0, 3)
+        + '&schd_in=01') + '&callback=?', function (data) {
 
-        //this is the whole page
-        var page = $($.parseHTML(data.contents.substring(3463, data.contents.length - 1764)));
-        //allTitles will be an array of "th" objects which is like تراكيب محددة - 20332 - عال 104 - 173
-        var allTitles = page.find('th.ddtitle');
-        // Search for Sections
-        findSections(allTitles, chosenCourseDep, chosenCourseNumber);
-        // If didn't find any Section alert the user
-        if (sections.array.length === 0) {
-            swal("لا يوجد شعب متاحة لمادة:", section, "error", {button: "حسناً"});
-        }
+            //this is the whole page
+            var page = $($.parseHTML(data.contents.substring(3463, data.contents.length - 1764)));
+            //allTitles will be an array of "th" objects which is like تراكيب محددة - 20332 - عال 104 - 173
+            var allTitles = page.find('th.ddtitle');
+            // Search for Sections
+            findSections(allTitles, chosenCourseDep, chosenCourseNumber);
+            // If didn't find any Section alert the user
+            if (sections.array.length === 0) {
+                swal("لا يوجد شعب متاحة لمادة:", section, "error", { button: "حسناً" });
+            }
 
-        //Hide loader
-        loader.toggleClass("d-none");
-        //Show get sections button
-        getSectionsButton.removeAttr('disabled');
-        getSectionsButton.toggleClass('gray');
-        getSectionsButton.toggleClass('blue');
-        getSectionsButton.css('cursor', 'pointer');
+            //Hide loader
+            loader.toggleClass("d-none");
+            //Show get sections button
+            getSectionsButton.removeAttr('disabled');
+            getSectionsButton.toggleClass('gray');
+            getSectionsButton.toggleClass('blue');
+            getSectionsButton.css('cursor', 'pointer');
 
 
-    }).fail(function(){
-        swal("تعذّر جلب الشعب", "تأكد من اتصالك بالانترنت", "error", {button: "حسناً"});
-        //Hide loader
-        loader.toggleClass("d-none");
-        //Show get sections button
-        getSectionsButton.removeAttr('disabled');
-        getSectionsButton.toggleClass('gray');
-        getSectionsButton.toggleClass('blue');
-        getSectionsButton.css('cursor', 'pointer');
-    });
+        }).fail(function () {
+            swal("تعذّر جلب الشعب", "تأكد من اتصالك بالانترنت", "error", { button: "حسناً" });
+            //Hide loader
+            loader.toggleClass("d-none");
+            //Show get sections button
+            getSectionsButton.removeAttr('disabled');
+            getSectionsButton.toggleClass('gray');
+            getSectionsButton.toggleClass('blue');
+            getSectionsButton.css('cursor', 'pointer');
+        });
 });
 
 // add sections manullay
@@ -754,7 +754,7 @@ $("#addSections").click(function () {
     // This variable stores chosen dep to deal with section number patterns problems (17x - 37x - ...)
     var chosenCourseDep = $("select[name='course-dep'] option:selected")[0].value;
     // This variable used to get credit hours for a course.
-    var chosenCourseNumber = Number($("select[name='course-no'] option:selected").text().substring(0,3));
+    var chosenCourseNumber = Number($("select[name='course-no'] option:selected").text().substring(0, 3));
 
     // If didn't choose gender and dep and course warn the user
     if (isMale === undefined || $("select[name='course-dep']").val() === null || $("select[name='course-no']").val() === null) {
@@ -791,16 +791,81 @@ $("#addSections").click(function () {
     addSectionsButton.css('cursor', 'not-allowed');
     //Show loader
     loader.toggleClass("d-none");
+    var days = [];
+    var swalResults = [];
 
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
-        progressSteps: ['1', '2', '3' ,'4','5','6']
-      }).queue([
+        progressSteps: ['1', '2', '3', '4', '5', '6', '7']
+    }).queue([
         {
-          title: 'إضافة شعبة يدويًا',
-          text: 'الأيام',
-          html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+            title: 'إضافة شعبة يدويًا',
+            text: ' تاريخ الاختبار النهائي :',
+            html: '<input id="swal-booking-date-select" type="date"/>',
+            preConfirm: () => {
+                return document.getElementById('swal-booking-date-select').value
+            },
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === '') {
+                        resolve('يجب أن تختار يوم')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+        },
+        {
+            title: 'إضافة شعبة يدويًا',
+            text: 'وقت الاختبار النهائي   :',
+            input: 'select',
+            inputOptions: {
+                '7': '07:00 AM',
+                '8': '08:00 AM',
+                '9': '09:00 AM',
+                '10': '10:00 AM',
+            },
+            inputPlaceholder: 'اختر وقت الاختبار',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === '') {
+                        resolve('فضلاً اختر إحدى الخيارات!!')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+        },
+        {
+            title: 'إضافة شعبة يدويًا',
+            text: 'الأيام',
+            input: 'select',
+            inputOptions: {
+                'الأحد': 'الأحد',
+                'الإثنين': 'الإثنين',
+                'الثلاثاء': 'الثلاثاء',
+                'الأربعاء': 'الأربعاء',
+                'الخميس': 'الخميس',
+            },
+            inputPlaceholder: 'اختر يوم ',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === '') {
+                        resolve('فضلاً اختر إحدى الخيارات!!')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+            //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+            //   preConfirm: () => {
+            //       return [
+            //       document.getElementById('check2')
+            //     ]
+            //   }
         },
         {
             title: 'إضافة شعبة يدويًا',
@@ -811,11 +876,20 @@ $("#addSections").click(function () {
                 '8': '08:00 AM',
                 '9': '09:00 AM',
                 '10': '10:00 AM',
-              },
-              inputPlaceholder: 'اختر وقت البداية',
-              showCancelButton: true,
-          },
-          {
+            },
+            inputPlaceholder: 'اختر وقت البداية',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === '') {
+                        resolve('فضلاً اختر إحدى الخيارات!!')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+        },
+        {
             title: 'إضافة شعبة يدويًا',
             text: 'أوقات المحاضرات تنتهي في  :',
             input: 'select',
@@ -824,49 +898,374 @@ $("#addSections").click(function () {
                 '8': '08:00 AM',
                 '9': '09:00 AM',
                 '10': '10:00 AM',
-              },
-              inputPlaceholder: 'اختر وقت الانتهاء',
-              showCancelButton: true,
-          },
-          {
+            },
+            inputPlaceholder: 'اختر وقت الانتهاء',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === '') {
+                        resolve('فضلاً اختر إحدى الخيارات!!')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+        },
+        {
             title: 'إضافة شعبة يدويًا',
             text: ' القاعة :',
             input: 'text',
-              inputPlaceholder: 'ادخل رقم القاعة ',
-              showCancelButton: true,
-          },
-          {
+            inputPlaceholder: 'ادخل رقم القاعة ',
+            showCancelButton: true,
+        },
+        {
             title: 'إضافة شعبة يدويًا',
-            text: ' تاريخ الاختبار النهائي :',
-            input: 'text',
-              inputPlaceholder: 'ادخل يوم الاختبار',
-              showCancelButton: true,
-          },
-          {
-            title: 'إضافة شعبة يدويًا',
-            text: 'وقت الاختبار النهائي   :',
-            input: 'select',
+            text: 'هل تريد إضافة أيام أخرى ؟',
+            input: 'radio',
             inputOptions: {
-                '7': '07:00 AM',
-                '8': '08:00 AM',
-                '9': '09:00 AM',
-                '10': '10:00 AM',
-              },
-              inputPlaceholder: 'اختر وقت الاختبار',
-              showCancelButton: true,
-          },
-      ]).then((result) => {
+                'نعم': 'نعم',
+                'لا': 'لا'
+            },
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === null) {
+                        resolve('فضلاً اختر إحدى الخيارات!!')
+                    } else if (value === 'yes') {
+                        //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
+                        Swal.mixin({
+                            confirmButtonText: 'Next &rarr;',
+                            showCancelButton: true,
+                            progressSteps: ['1', '2', '3', '4', '5']
+                        }).queue([
+                            {
+                                title: 'إضافة شعبة يدويًا',
+                                text: 'الأيام',
+                                input: 'select',
+                                inputOptions: {
+                                    'الأحد': 'الأحد',
+                                    'الإثنين': 'الإثنين',
+                                    'الثلاثاء': 'الثلاثاء',
+                                    'الأربعاء': 'الأربعاء',
+                                    'الخميس': 'الخميس',
+                                },
+                                inputPlaceholder: 'اختر يوم ',
+                                showCancelButton: true,
+                                inputValidator: (value) => {
+                                    return new Promise((resolve) => {
+                                        if (value === '') {
+                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                        } else {
+                                            resolve()
+                                        }
+                                    })
+                                }
+                                //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+                                //   preConfirm: () => {
+                                //       return [
+                                //       document.getElementById('check2')
+                                //     ]
+                                //   }
+                            },
+                            {
+                                title: 'إضافة شعبة يدويًا',
+                                text: 'أوقات المحاضرات تبدأ في  :',
+                                input: 'select',
+                                inputOptions: {
+                                    '7': '07:00 AM',
+                                    '8': '08:00 AM',
+                                    '9': '09:00 AM',
+                                    '10': '10:00 AM',
+                                },
+                                inputPlaceholder: 'اختر وقت البداية',
+                                showCancelButton: true,
+                                inputValidator: (value) => {
+                                    return new Promise((resolve) => {
+                                        if (value === '') {
+                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                        } else {
+                                            resolve()
+                                        }
+                                    })
+                                }
+                            },
+                            {
+                                title: 'إضافة شعبة يدويًا',
+                                text: 'أوقات المحاضرات تنتهي في  :',
+                                input: 'select',
+                                inputOptions: {
+                                    '7': '07:00 AM',
+                                    '8': '08:00 AM',
+                                    '9': '09:00 AM',
+                                    '10': '10:00 AM',
+                                },
+                                inputPlaceholder: 'اختر وقت الانتهاء',
+                                showCancelButton: true,
+                                inputValidator: (value) => {
+                                    return new Promise((resolve) => {
+                                        if (value === '') {
+                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                        } else {
+                                            resolve()
+                                        }
+                                    })
+                                }
+                            },
+                            {
+                                title: 'إضافة شعبة يدويًا',
+                                text: ' القاعة :',
+                                input: 'text',
+                                inputPlaceholder: 'ادخل رقم القاعة ',
+                                showCancelButton: true,
+                            },
+                            {
+                                title: 'إضافة شعبة يدويًا',
+                                text: 'هل تريد إضافة أيام أخرى ؟',
+                                input: 'radio',
+                                inputOptions: {
+                                    'نعم': 'نعم',
+                                    'لا': 'لا'
+                                },
+                                inputValidator: (value) => {
+                                    return new Promise((resolve) => {
+                                        if (value === null) {
+                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                        } else if (value === 'yes') {
+                                            //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
+                                            Swal.mixin({
+                                                confirmButtonText: 'Next &rarr;',
+                                                showCancelButton: true,
+                                                progressSteps: ['1', '2', '3', '4', '5']
+                                            }).queue([
+                                                {
+                                                    title: 'إضافة شعبة يدويًا',
+                                                    text: 'الأيام',
+                                                    input: 'select',
+                                                    inputOptions: {
+                                                        'الأحد': 'الأحد',
+                                                        'الإثنين': 'الإثنين',
+                                                        'الثلاثاء': 'الثلاثاء',
+                                                        'الأربعاء': 'الأربعاء',
+                                                        'الخميس': 'الخميس',
+                                                    },
+                                                    inputPlaceholder: 'اختر يوم ',
+                                                    showCancelButton: true,
+                                                    inputValidator: (value) => {
+                                                        return new Promise((resolve) => {
+                                                            if (value === '') {
+                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                            } else {
+                                                                resolve()
+                                                            }
+                                                        })
+                                                    }
+                                                    //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+                                                    //   preConfirm: () => {
+                                                    //       return [
+                                                    //       document.getElementById('check2')
+                                                    //     ]
+                                                    //   }
+                                                },
+                                                {
+                                                    title: 'إضافة شعبة يدويًا',
+                                                    text: 'أوقات المحاضرات تبدأ في  :',
+                                                    input: 'select',
+                                                    inputOptions: {
+                                                        '7': '07:00 AM',
+                                                        '8': '08:00 AM',
+                                                        '9': '09:00 AM',
+                                                        '10': '10:00 AM',
+                                                    },
+                                                    inputPlaceholder: 'اختر وقت البداية',
+                                                    showCancelButton: true,
+                                                    inputValidator: (value) => {
+                                                        return new Promise((resolve) => {
+                                                            if (value === '') {
+                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                            } else {
+                                                                resolve()
+                                                            }
+                                                        })
+                                                    }
+                                                },
+                                                {
+                                                    title: 'إضافة شعبة يدويًا',
+                                                    text: 'أوقات المحاضرات تنتهي في  :',
+                                                    input: 'select',
+                                                    inputOptions: {
+                                                        '7': '07:00 AM',
+                                                        '8': '08:00 AM',
+                                                        '9': '09:00 AM',
+                                                        '10': '10:00 AM',
+                                                    },
+                                                    inputPlaceholder: 'اختر وقت الانتهاء',
+                                                    showCancelButton: true,
+                                                    inputValidator: (value) => {
+                                                        return new Promise((resolve) => {
+                                                            if (value === '') {
+                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                            } else {
+                                                                resolve()
+                                                            }
+                                                        })
+                                                    }
+                                                },
+                                                {
+                                                    title: 'إضافة شعبة يدويًا',
+                                                    text: ' القاعة :',
+                                                    input: 'text',
+                                                    inputPlaceholder: 'ادخل رقم القاعة ',
+                                                    showCancelButton: true,
+                                                },
+                                                {
+                                                    title: 'إضافة شعبة يدويًا',
+                                                    text: 'هل تريد إضافة أيام أخرى ؟',
+                                                    input: 'radio',
+                                                    inputOptions: {
+                                                        'نعم': 'نعم',
+                                                        'لا': 'لا'
+                                                    },
+                                                    inputValidator: (value) => {
+                                                        return new Promise((resolve) => {
+                                                            if (value === null) {
+                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                            } else if (value === 'yes') {
+
+
+                                                                //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
+                                                                Swal.mixin({
+                                                                    confirmButtonText: 'Next &rarr;',
+                                                                    showCancelButton: true,
+                                                                    progressSteps: ['1', '2', '3', '4', '5']
+                                                                }).queue([
+                                                                    {
+                                                                        title: 'إضافة شعبة يدويًا',
+                                                                        text: 'الأيام',
+                                                                        input: 'select',
+                                                                        inputOptions: {
+                                                                            'الأحد': 'الأحد',
+                                                                            'الإثنين': 'الإثنين',
+                                                                            'الثلاثاء': 'الثلاثاء',
+                                                                            'الأربعاء': 'الأربعاء',
+                                                                            'الخميس': 'الخميس',
+                                                                        },
+                                                                        inputPlaceholder: 'اختر يوم ',
+                                                                        showCancelButton: true,
+                                                                        inputValidator: (value) => {
+                                                                            return new Promise((resolve) => {
+                                                                                if (value === '') {
+                                                                                    resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                                } else {
+                                                                                    resolve()
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                        //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
+                                                                        //   preConfirm: () => {
+                                                                        //       return [
+                                                                        //       document.getElementById('check2')
+                                                                        //     ]
+                                                                        //   }
+                                                                    },
+                                                                    {
+                                                                        title: 'إضافة شعبة يدويًا',
+                                                                        text: 'أوقات المحاضرات تبدأ في  :',
+                                                                        input: 'select',
+                                                                        inputOptions: {
+                                                                            '7': '07:00 AM',
+                                                                            '8': '08:00 AM',
+                                                                            '9': '09:00 AM',
+                                                                            '10': '10:00 AM',
+                                                                        },
+                                                                        inputPlaceholder: 'اختر وقت البداية',
+                                                                        showCancelButton: true,
+                                                                        inputValidator: (value) => {
+                                                                            return new Promise((resolve) => {
+                                                                                if (value === '') {
+                                                                                    resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                                } else {
+                                                                                    resolve()
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        title: 'إضافة شعبة يدويًا',
+                                                                        text: 'أوقات المحاضرات تنتهي في  :',
+                                                                        input: 'select',
+                                                                        inputOptions: {
+                                                                            '7': '07:00 AM',
+                                                                            '8': '08:00 AM',
+                                                                            '9': '09:00 AM',
+                                                                            '10': '10:00 AM',
+                                                                        },
+                                                                        inputPlaceholder: 'اختر وقت الانتهاء',
+                                                                        showCancelButton: true,
+                                                                        inputValidator: (value) => {
+                                                                            return new Promise((resolve) => {
+                                                                                if (value === '') {
+                                                                                    resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                                } else {
+                                                                                    resolve()
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        title: 'إضافة شعبة يدويًا',
+                                                                        text: ' القاعة :',
+                                                                        input: 'text',
+                                                                        inputPlaceholder: 'ادخل رقم القاعة ',
+                                                                        showCancelButton: true,
+                                                                    }
+                                                                ]).then(function (value) {
+                                                                    days.push(value);
+                                                                    resolve();// adding three day else
+                                                                });
+
+
+                                                            } else {
+                                                                resolve()
+                                                            }
+                                                        })
+                                                    }
+                                                }
+                                            ]).then(function (value) {
+                                                days.push(value);
+                                                resolve();// adding two day else
+                                            });
+
+
+                                        } else {
+                                            resolve()
+                                        }
+                                    })
+                                }
+                            }
+                        ]).then(function (value) {
+                            days.push(value);
+                            resolve(); // adding one day else
+                        });
+
+
+                    } else {
+                        resolve()
+                    }
+                }) //promise
+            } // input validation
+        } // اضافة الايام 1
+    ]).then((result) => {
         if (result.value) {
-          Swal({
-            title: 'All done!',
-            html:
-              'Your informations: <pre><code>' +
-                JSON.stringify(result.value) +
-              '</code></pre>',
-            confirmButtonText: 'Good!'
-          })
+            Swal({
+                title: 'خلّصنا !',
+                html:
+                    'معلوماتك : <pre><code>' +
+                    JSON.stringify(result.value) +
+                    // JSON.stringify(days.value) +
+                    '</code></pre>',
+                confirmButtonText: 'تمام !'
+            })
         }
-      })
+    })
 
 
 });
@@ -897,8 +1296,8 @@ $("#added-sections-table").on("click", ".remove-button", function () {
     table.array[index].time.forEach(function (t) {
         for (var i = 1; i < t.times.length; i++) {
             if (t.day === 1) {
-                if (t.times[i].substring(2, 4) === "00"){
-                    $('<td class="day' + t.day + '"></td>').insertAfter( $("#row" + t.times[i] + " th"));
+                if (t.times[i].substring(2, 4) === "00") {
+                    $('<td class="day' + t.day + '"></td>').insertAfter($("#row" + t.times[i] + " th"));
                 } else {
                     $("#row" + t.times[i]).prepend('<td class="day' + t.day + '"></td>');
                 }
@@ -909,7 +1308,7 @@ $("#added-sections-table").on("click", ".remove-button", function () {
                 var foundBigger = false;
                 for (var j = 0; j < days.length; j++) {
                     if (Number($(days[j]).attr("class").substring(3)) > t.day) {
-                        $('<td class="day' + t.day + '"></td>').insertBefore( $(days[j]));
+                        $('<td class="day' + t.day + '"></td>').insertBefore($(days[j]));
                         foundBigger = true;
                         break;
                     }
@@ -944,7 +1343,7 @@ $("#added-sections-table").on("click", ".remove-button", function () {
     // Delete section from table array
     table.array.splice(index, 1);
     // Clear color from color object
-    for(var i = 0; i < colors.length; i++){
+    for (var i = 0; i < colors.length; i++) {
         if (colors[i].color === color) {
             colors[i].isUsed = false;
             break;
@@ -965,7 +1364,7 @@ $("#added-sections-table").on("click", ".remove-button", function () {
 });
 
 // Export timetable as an image
-$("#export-as-image").click(function() {
+$("#export-as-image").click(function () {
     function saveAs(uri, filename) {
         var link = document.createElement('a');
         if (typeof link.download === 'string') {
@@ -981,7 +1380,7 @@ $("#export-as-image").click(function() {
             window.open(uri);
         }
     }
-    html2canvas(document.querySelector('#timetable tbody')).then(function(canvas) {
+    html2canvas(document.querySelector('#timetable tbody')).then(function (canvas) {
         saveAs(canvas.toDataURL(), 'جدول.png');
     });
 });
