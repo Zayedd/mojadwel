@@ -1022,7 +1022,7 @@ $("#addSections").click(function () {
                 return new Promise((resolve) => {
                     if (value === null) {
                         resolve('فضلاً اختر إحدى الخيارات!!')
-                    } else if (value === 'yes') {
+                    } else if (value === 'نعم') {
                         //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                         Swal.mixin({
                             confirmButtonText: 'Next &rarr;',
@@ -1121,7 +1121,7 @@ $("#addSections").click(function () {
                                     return new Promise((resolve) => {
                                         if (value === null) {
                                             resolve('فضلاً اختر إحدى الخيارات!!')
-                                        } else if (value === 'yes') {
+                                        } else if (value === 'نعم') {
                                             //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                                             Swal.mixin({
                                                 confirmButtonText: 'Next &rarr;',
@@ -1220,7 +1220,7 @@ $("#addSections").click(function () {
                                                         return new Promise((resolve) => {
                                                             if (value === null) {
                                                                 resolve('فضلاً اختر إحدى الخيارات!!')
-                                                            } else if (value === 'yes') {
+                                                            } else if (value === 'نعم') {
 
 
                                                                 //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
