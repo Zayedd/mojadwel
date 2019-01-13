@@ -857,32 +857,6 @@ $("#addSections").click(function () {
         return;
     }
 
-    // Discard trk sections due to strange section number patterns.
-    if (isMale && chosenCourseDep === "trk") {
-        swal("نواجه مشكلة في مادة السيرة النبوية، من فضلك راجع شعب السيرة النبوية من ملف الشعب.", {
-            button: "حسناً",
-            icon: "info"
-        });
-
-        return;
-    }
-
-    var addSectionsButton = $("#addSections");
-    var loader = $(".loader2");
-    var section = $("select[name='course-dep'] option:selected").text() + ' - ' + $("select[name='course-no'] option:selected").text();
-    //Empty sections table
-    $("#sections-table tbody tr").remove();
-    //Empty sections array
-    if (sections.array.length > 0) {
-        sections.emptyArray();
-    }
-    //Remove get sections button - for not to receive more than one request at a time.
-    addSectionsButton.attr('disabled', 'true');
-    addSectionsButton.toggleClass('blue');
-    addSectionsButton.toggleClass('gray');
-    addSectionsButton.css('cursor', 'not-allowed');
-    //Show loader
-    loader.toggleClass("d-none");
     var days = [];
     var swalResults = [];
 
