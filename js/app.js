@@ -972,9 +972,10 @@ $("#addSections").click(function () {
     }
 
     Swal.mixin({
-        confirmButtonText: 'Next &rarr;',
+        confirmButtonText: 'التالي',
+        cancelButtonText: 'إلغاء',
         showCancelButton: true,
-        progressSteps: ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        progressSteps: ['1', '2', '3', '4', '5', '6', '7']
     }).queue([
         {
             title: 'إضافة شعبة يدويًا',
@@ -1010,16 +1011,22 @@ $("#addSections").click(function () {
         },
         {
             title: 'إضافة شعبة يدويًا',
-            text: ' تاريخ الاختبار النهائي :',
+            text: '  الاختبار النهائي :',
             html:
-                'تاريخ الاختبار النهائي   :<br><br><select id="day"  ><option value="null" disabled selected hidden>  اختر اليوم </option> <option value="01">01</option> <option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select>' +
-                '<select id="month"  ><option value="null" disabled selected hidden>اختر الشهر  </option> <option value="01">01</option> <option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                '<select id="year"  ><option value="null" disabled selected hidden>  اختر السنة</option> <option value="1440">1440</option> </select>',
+                'تاريخ الاختبار النهائي   :<br><br><select id="day"  ><option value="null" disabled selected hidden>  اليوم </option> <option value="01">01</option> <option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select>' +
+                '<select id="month"  ><option value="null" disabled selected hidden> الشهر  </option> <option value="01">01</option> <option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                '<select id="year"  ><option value="null" disabled selected hidden>   السنة</option> <option value="1440">1440</option> </select>'+
+                '<br> <br> وقت الاختبار النهائي   :<br><br><select id="exam-start-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                ' : <select id="exam-start-minute"  ><option value="null" disabled selected hidden> الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                '<select id="exam-start-AM-PM"  ><option value="null" disabled selected hidden>   ص / م </option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
             preConfirm: () => {
                 return [
                     document.getElementById('day').value,
                     document.getElementById('month').value,
-                    document.getElementById('year').value
+                    document.getElementById('year').value,
+                    document.getElementById('exam-start-hour').value,
+                    document.getElementById('exam-start-minute').value,
+                    document.getElementById('exam-start-AM-PM').value
                 ]
             },
             // html: ' تاريخ الاختبار النهائي : <br><br><input id="swal-booking-date-select" type="date"/>',
@@ -1036,48 +1043,7 @@ $("#addSections").click(function () {
                 })
             }
         },
-        {
-            title: 'إضافة شعبة يدويًا',
-            text: 'وقت الاختبار النهائي   :',
-            html:
-                'وقت الاختبار النهائي   :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت البدء بالساعات</option> <option value="7">07</option> <option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت البدء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
-            preConfirm: () => {
-                return [
-                    document.getElementById('lect-start-hour').value,
-                    document.getElementById('lect-start-minute').value,
-                    document.getElementById('lect-start-AM-PM').value
-                ]
-            },
-            inputValidator: (value) => {
-                return new Promise((resolve) => {
-                    if (value === '') {
-                        resolve('يجب أن تختار وقت')
-                    } else {
-                        resolve()
-                    }
-                })
-            }
-            // input: 'select',
-            // inputOptions: {
-            //     '7': '07:00 AM',
-            //     '8': '08:00 AM',
-            //     '9': '09:00 AM',
-            //     '10': '10:00 AM',
-            // },
-            // inputPlaceholder: 'اختر وقت الاختبار',
-            // showCancelButton: true,
-            // inputValidator: (value) => {
-            //     return new Promise((resolve) => {
-            //         if (value === '') {
-            //             resolve('فضلاً اختر إحدى الخيارات!!')
-            //         } else {
-            //             resolve()
-            //         }
-            //     })
-            // }
-        },
+        
         {
             title: 'إضافة شعبة يدويًا',
             text: 'الأيام',
@@ -1111,14 +1077,20 @@ $("#addSections").click(function () {
             title: 'إضافة شعبة يدويًا',
             text: 'أوقات المحاضرات تبدأ في  :',
             html:
-                'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت البدء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت البدء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
+                'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                ' : <select id="lect-start-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>'+
+                '<br><br>أوقات المحاضرات تنتهي في  :<br><br><select id="lect-end-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                ' : <select id="lect-end-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                '<select id="lect-end-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
             preConfirm: () => {
                 return [
                     document.getElementById('lect-start-hour').value,
                     document.getElementById('lect-start-minute').value,
-                    document.getElementById('lect-start-AM-PM').value
+                    document.getElementById('lect-start-AM-PM').value,
+                    document.getElementById('lect-end-hour').value,
+                    document.getElementById('lect-end-minute').value,
+                    document.getElementById('lect-end-AM-PM').value
                 ]
             },
             inputValidator: (value) => {
@@ -1149,48 +1121,7 @@ $("#addSections").click(function () {
             //     })
             // }
         },
-        {
-            title: 'إضافة شعبة يدويًا',
-            text: 'أوقات المحاضرات تنتهي في  :',
-            html:
-                'أوقات المحاضرات تنتهي في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت الانتهاء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت الانتهاء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
-            preConfirm: () => {
-                return [
-                    document.getElementById('lect-start-hour').value,
-                    document.getElementById('lect-start-minute').value,
-                    document.getElementById('lect-start-AM-PM').value
-                ]
-            },
-            inputValidator: (value) => {
-                return new Promise((resolve) => {
-                    if (value === '') {
-                        resolve('يجب أن تختار وقت')
-                    } else {
-                        resolve()
-                    }
-                })
-            }
-            // input: 'select',
-            // inputOptions: {
-            //     '7': '07:00 AM',
-            //     '8': '08:00 AM',
-            //     '9': '09:00 AM',
-            //     '10': '10:00 AM',
-            // },
-            // inputPlaceholder: 'اختر وقت الانتهاء',
-            // showCancelButton: true,
-            // inputValidator: (value) => {
-            //     return new Promise((resolve) => {
-            //         if (value === '') {
-            //             resolve('فضلاً اختر إحدى الخيارات!!')
-            //         } else {
-            //             resolve()
-            //         }
-            //     })
-            // }
-        },
+        
         {
             title: 'إضافة شعبة يدويًا',
             text: ' القاعة :',
@@ -1259,14 +1190,20 @@ $("#addSections").click(function () {
                                 title: 'إضافة شعبة يدويًا',
                                 text: 'أوقات المحاضرات تبدأ في  :',
                                 html:
-                                    'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت البدء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                    '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت البدء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                    '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
+                                'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                ' : <select id="lect-start-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>'+
+                                '<br><br>أوقات المحاضرات تنتهي في  :<br><br><select id="lect-end-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                ' : <select id="lect-end-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                '<select id="lect-end-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
                                 preConfirm: () => {
                                     return [
                                         document.getElementById('lect-start-hour').value,
                                         document.getElementById('lect-start-minute').value,
-                                        document.getElementById('lect-start-AM-PM').value
+                                        document.getElementById('lect-start-AM-PM').value,
+                                        document.getElementById('lect-end-hour').value,
+                                        document.getElementById('lect-end-minute').value,
+                                        document.getElementById('lect-end-AM-PM').value
                                     ]
                                 },
                                 inputValidator: (value) => {
@@ -1286,48 +1223,6 @@ $("#addSections").click(function () {
                                 //     '10': '10:00 AM',
                                 // },
                                 // inputPlaceholder: 'اختر وقت البداية',
-                                // showCancelButton: true,
-                                // inputValidator: (value) => {
-                                //     return new Promise((resolve) => {
-                                //         if (value === '') {
-                                //             resolve('فضلاً اختر إحدى الخيارات!!')
-                                //         } else {
-                                //             resolve()
-                                //         }
-                                //     })
-                                // }
-                            },
-                            {
-                                title: 'إضافة شعبة يدويًا',
-                                text: 'أوقات المحاضرات تنتهي في  :',
-                                html:
-                                    'أوقات المحاضرات تنتهي في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت الانتهاء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                    '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت الانتهاء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                    '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
-                                preConfirm: () => {
-                                    return [
-                                        document.getElementById('lect-start-hour').value,
-                                        document.getElementById('lect-start-minute').value,
-                                        document.getElementById('lect-start-AM-PM').value
-                                    ]
-                                },
-                                inputValidator: (value) => {
-                                    return new Promise((resolve) => {
-                                        if (value === '') {
-                                            resolve('يجب أن تختار وقت')
-                                        } else {
-                                            resolve()
-                                        }
-                                    })
-                                }
-                                // input: 'select',
-                                // inputOptions: {
-                                //     '7': '07:00 AM',
-                                //     '8': '08:00 AM',
-                                //     '9': '09:00 AM',
-                                //     '10': '10:00 AM',
-                                // },
-                                // inputPlaceholder: 'اختر وقت الانتهاء',
                                 // showCancelButton: true,
                                 // inputValidator: (value) => {
                                 //     return new Promise((resolve) => {
@@ -1398,14 +1293,20 @@ $("#addSections").click(function () {
                                                     title: 'إضافة شعبة يدويًا',
                                                     text: 'أوقات المحاضرات تبدأ في  :',
                                                     html:
-                                                        'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت البدء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                                        '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت البدء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                                        '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
+                                                    'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                                    ' : <select id="lect-start-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                                    '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>'+
+                                                    '<br><br>أوقات المحاضرات تنتهي في  :<br><br><select id="lect-end-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                                    ' : <select id="lect-end-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                                    '<select id="lect-end-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
                                                     preConfirm: () => {
                                                         return [
                                                             document.getElementById('lect-start-hour').value,
                                                             document.getElementById('lect-start-minute').value,
-                                                            document.getElementById('lect-start-AM-PM').value
+                                                            document.getElementById('lect-start-AM-PM').value,
+                                                            document.getElementById('lect-end-hour').value,
+                                                            document.getElementById('lect-end-minute').value,
+                                                            document.getElementById('lect-end-AM-PM').value
                                                         ]
                                                     },
                                                     inputValidator: (value) => {
@@ -1425,48 +1326,6 @@ $("#addSections").click(function () {
                                                     //     '10': '10:00 AM',
                                                     // },
                                                     // inputPlaceholder: 'اختر وقت البداية',
-                                                    // showCancelButton: true,
-                                                    // inputValidator: (value) => {
-                                                    //     return new Promise((resolve) => {
-                                                    //         if (value === '') {
-                                                    //             resolve('فضلاً اختر إحدى الخيارات!!')
-                                                    //         } else {
-                                                    //             resolve()
-                                                    //         }
-                                                    //     })
-                                                    // }
-                                                },
-                                                {
-                                                    title: 'إضافة شعبة يدويًا',
-                                                    text: 'أوقات المحاضرات تنتهي في  :',
-                                                    html:
-                                                        'أوقات المحاضرات تنتهي في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت الانتهاء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                                        '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت الانتهاء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                                        '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
-                                                    preConfirm: () => {
-                                                        return [
-                                                            document.getElementById('lect-start-hour').value,
-                                                            document.getElementById('lect-start-minute').value,
-                                                            document.getElementById('lect-start-AM-PM').value
-                                                        ]
-                                                    },
-                                                    inputValidator: (value) => {
-                                                        return new Promise((resolve) => {
-                                                            if (value === '') {
-                                                                resolve('يجب أن تختار وقت')
-                                                            } else {
-                                                                resolve()
-                                                            }
-                                                        })
-                                                    }
-                                                    // input: 'select',
-                                                    // inputOptions: {
-                                                    //     '7': '07:00 AM',
-                                                    //     '8': '08:00 AM',
-                                                    //     '9': '09:00 AM',
-                                                    //     '10': '10:00 AM',
-                                                    // },
-                                                    // inputPlaceholder: 'اختر وقت الانتهاء',
                                                     // showCancelButton: true,
                                                     // inputValidator: (value) => {
                                                     //     return new Promise((resolve) => {
@@ -1548,14 +1407,20 @@ $("#addSections").click(function () {
                                                                         title: 'إضافة شعبة يدويًا',
                                                                         text: 'أوقات المحاضرات تبدأ في  :',
                                                                         html:
-                                                                            'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت البدء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                                                            '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت البدء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                                                            '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
+                                                                        'أوقات المحاضرات تبدأ في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                                                        ' : <select id="lect-start-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                                                        '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>'+
+                                                                        '<br><br>أوقات المحاضرات تنتهي في  :<br><br><select id="lect-end-hour"  ><option value="null" disabled selected hidden> الساعة</option> <option value="1">01</option> <option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
+                                                                        ' : <select id="lect-end-minute"  ><option value="null" disabled selected hidden>الدقيقة</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
+                                                                        '<select id="lect-end-AM-PM"  ><option value="null" disabled selected hidden>  ص / م</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
                                                                         preConfirm: () => {
                                                                             return [
                                                                                 document.getElementById('lect-start-hour').value,
                                                                                 document.getElementById('lect-start-minute').value,
-                                                                                document.getElementById('lect-start-AM-PM').value
+                                                                                document.getElementById('lect-start-AM-PM').value,
+                                                                                document.getElementById('lect-end-hour').value,
+                                                                                document.getElementById('lect-end-minute').value,
+                                                                                document.getElementById('lect-end-AM-PM').value
                                                                             ]
                                                                         },
                                                                         inputValidator: (value) => {
@@ -1575,48 +1440,6 @@ $("#addSections").click(function () {
                                                                         //     '10': '10:00 AM',
                                                                         // },
                                                                         // inputPlaceholder: 'اختر وقت البداية',
-                                                                        // showCancelButton: true,
-                                                                        // inputValidator: (value) => {
-                                                                        //     return new Promise((resolve) => {
-                                                                        //         if (value === '') {
-                                                                        //             resolve('فضلاً اختر إحدى الخيارات!!')
-                                                                        //         } else {
-                                                                        //             resolve()
-                                                                        //         }
-                                                                        //     })
-                                                                        // }
-                                                                    },
-                                                                    {
-                                                                        title: 'إضافة شعبة يدويًا',
-                                                                        text: 'أوقات المحاضرات تنتهي في  :',
-                                                                        html:
-                                                                            'أوقات المحاضرات تنتهي في  :<br><br><select id="lect-start-hour"  ><option value="null" disabled selected hidden>  اختر وقت الانتهاء بالساعات</option> <option value="07">07</option> <option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>' +
-                                                                            '<select id="lect-start-minute"  ><option value="null" disabled selected hidden>اختر وقت الانتهاء بالدقائق</option> <option value="00">00</option> <option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>' +
-                                                                            '<select id="lect-start-AM-PM"  ><option value="null" disabled selected hidden>  اختر صباحًا أو مساءً</option> <option value="AM">صباحًا</option> <option value="PM">مساءً</option></select>',
-                                                                        preConfirm: () => {
-                                                                            return [
-                                                                                document.getElementById('lect-start-hour').value,
-                                                                                document.getElementById('lect-start-minute').value,
-                                                                                document.getElementById('lect-start-AM-PM').value
-                                                                            ]
-                                                                        },
-                                                                        inputValidator: (value) => {
-                                                                            return new Promise((resolve) => {
-                                                                                if (value === '') {
-                                                                                    resolve('يجب أن تختار وقت')
-                                                                                } else {
-                                                                                    resolve()
-                                                                                }
-                                                                            })
-                                                                        }
-                                                                        // input: 'select',
-                                                                        // inputOptions: {
-                                                                        //     '7': '07:00 AM',
-                                                                        //     '8': '08:00 AM',
-                                                                        //     '9': '09:00 AM',
-                                                                        //     '10': '10:00 AM',
-                                                                        // },
-                                                                        // inputPlaceholder: 'اختر وقت الانتهاء',
                                                                         // showCancelButton: true,
                                                                         // inputValidator: (value) => {
                                                                         //     return new Promise((resolve) => {
@@ -1687,7 +1510,7 @@ $("#addSections").click(function () {
         } // اضافة الايام 1
     ]).then((result) => { // this for regular choise " without more days"
         if (result.value) {
-            var obj = arrangeAddSectionAsObj(result.value);
+            // var obj = arrangeAddSectionAsObj(result.value);
             Swal({
                 title: 'خلّصنا !',
                 html:
