@@ -1060,7 +1060,7 @@ $("#addSections").click(function () {
             inputValidator: (value) => {
                 return new Promise((resolve) => {
                     if (value === '') {
-                        resolve('فضلاً اختر إحدى الخيارات!!')
+                        resolve('فضلاً اختر أحد الخيارات')
                     } else {
                         resolve()
                     }
@@ -1114,14 +1114,14 @@ $("#addSections").click(function () {
             // inputValidator: (value) => {
             //     return new Promise((resolve) => {
             //         if (value === '') {
-            //             resolve('فضلاً اختر إحدى الخيارات!!')
+            //             resolve('فضلاً اختر أحد الخيارات')
             //         } else {
             //             resolve()
             //         }
             //     })
             // }
         },
-        
+
         {
             title: 'إضافة شعبة يدويًا',
             text: ' القاعة :',
@@ -1149,7 +1149,7 @@ $("#addSections").click(function () {
             inputValidator: (value) => {
                 return new Promise((resolve) => {
                     if (value === null) {
-                        resolve('فضلاً اختر إحدى الخيارات!!')
+                        resolve('فضلاً اختر أحد الخيارات')
                     } else if (value === 'نعم') {
                         //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                         Swal.mixin({
@@ -1173,7 +1173,7 @@ $("#addSections").click(function () {
                                 inputValidator: (value) => {
                                     return new Promise((resolve) => {
                                         if (value === '') {
-                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                            resolve('فضلاً اختر أحد الخيارات')
                                         } else {
                                             resolve()
                                         }
@@ -1227,7 +1227,7 @@ $("#addSections").click(function () {
                                 // inputValidator: (value) => {
                                 //     return new Promise((resolve) => {
                                 //         if (value === '') {
-                                //             resolve('فضلاً اختر إحدى الخيارات!!')
+                                //             resolve('فضلاً اختر أحد الخيارات')
                                 //         } else {
                                 //             resolve()
                                 //         }
@@ -1252,7 +1252,7 @@ $("#addSections").click(function () {
                                 inputValidator: (value) => {
                                     return new Promise((resolve) => {
                                         if (value === null) {
-                                            resolve('فضلاً اختر إحدى الخيارات!!')
+                                            resolve('فضلاً اختر أحد الخيارات')
                                         } else if (value === 'نعم') {
                                             //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                                             Swal.mixin({
@@ -1276,7 +1276,7 @@ $("#addSections").click(function () {
                                                     inputValidator: (value) => {
                                                         return new Promise((resolve) => {
                                                             if (value === '') {
-                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                resolve('فضلاً اختر أحد الخيارات')
                                                             } else {
                                                                 resolve()
                                                             }
@@ -1330,7 +1330,7 @@ $("#addSections").click(function () {
                                                     // inputValidator: (value) => {
                                                     //     return new Promise((resolve) => {
                                                     //         if (value === '') {
-                                                    //             resolve('فضلاً اختر إحدى الخيارات!!')
+                                                    //             resolve('فضلاً اختر أحد الخيارات')
                                                     //         } else {
                                                     //             resolve()
                                                     //         }
@@ -1364,7 +1364,7 @@ $("#addSections").click(function () {
                                                     inputValidator: (value) => {
                                                         return new Promise((resolve) => {
                                                             if (value === null) {
-                                                                resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                resolve('فضلاً اختر أحد الخيارات')
                                                             } else if (value === 'نعم') {
 
 
@@ -1390,7 +1390,7 @@ $("#addSections").click(function () {
                                                                         inputValidator: (value) => {
                                                                             return new Promise((resolve) => {
                                                                                 if (value === '') {
-                                                                                    resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                                    resolve('فضلاً اختر أحد الخيارات')
                                                                                 } else {
                                                                                     resolve()
                                                                                 }
@@ -1444,7 +1444,7 @@ $("#addSections").click(function () {
                                                                         // inputValidator: (value) => {
                                                                         //     return new Promise((resolve) => {
                                                                         //         if (value === '') {
-                                                                        //             resolve('فضلاً اختر إحدى الخيارات!!')
+                                                                        //             resolve('فضلاً اختر أحد الخيارات')
                                                                         //         } else {
                                                                         //             resolve()
                                                                         //         }
