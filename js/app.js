@@ -8,8 +8,6 @@ var id = 1;
 var isMale;
 // Used to alert the user if exceeded credit hours limit.
 var totalCredits = 0;
-// Used for savinf the other days in case of add sections manually
-var days = []; // is multipe of 4 
 
 /**==========================================**/
 //                 Functions                  //
@@ -121,7 +119,7 @@ function getTimesArray(tbody) {
     return times;
 }
 
-function getTimesManually(day, location, startClass, endClass, flag) { // [2] is start of lecture its like [hour,minute,AM or PM] , [3] is the end its like [AM or PM , minute , hour]
+function getTimesArrayManually(day, location, startClass, endClass, flag) { // [2] is start of lecture its like [hour,minute,AM or PM] , [3] is the end its like [AM or PM , minute , hour]
     // flag for know if there is another day or not
     if (flag == 1) { //thats mean yes there is another days so check the days [] 
         var times = [];
@@ -266,14 +264,6 @@ function getFinalExam(tbody) {
         }
     }
     return { time: time, date: date };
-}
-
-function getFinalExamManually(timeManually, dateManually) { // time is array of [AM or PM , minute , hour] , date is array of [year , month , day]
-    var time = "";
-    var date = "";
-    time = timeManually[2] + ":" + timeManually[1] + " " + timeManually[0] + " - " + timeManually[2] + ":" + timeManually[1] + " " + timeManually[0];
-    date = dateManually[2] + "/" + dateManually[1] + "/" + dateManually[0] + " - " + dateManually[2] + "/" + dateManually[1] + "/" + dateManually[0];
-    return { time: time, date: date }; // time format is "hour:minute AM or PM - hour:minute AM or PM" , date format is "day/month/year - day/month/year"
 }
 
 
@@ -647,40 +637,6 @@ $.cssHooks.backgroundColor = {
     }
 };
 
-function arrangeAddSectionAsObj(result) { // this is the result just in case the lecture is one day 
-    var tempResult = result;
-    if (tempResult[0] == 'نعم') // in case there is more than one day, so its will be ok i wanna add more days
-    {
-        manualSections.array.push({
-            id: id++,
-            dep: $("select[name='course-dep'] option:selected")[0].value,
-            number: Number($("select[name='course-no'] option:selected").text().substring(0, 3)),
-            name: Number($("select[name='course-no'] option:selected").text().substring(6)),
-            section: tempResult[7], //important
-            crn: tempResult[8],
-            // teacher: teacher, // no need
-            // creditHours: getCreditHours(chosenCourseDep, chosenCourseNumber), // no need
-            time: getTimesManually(tempResult[4], tempResult[1], tempResult[2], tempResult[3], 1),  // [4] is the day [1] is the location [2] is the start of class [3] is the end of class and 1 for flag
-            finalExam: getFinalExamManually(tempResult[5], tempResult[6]) //[5] is the time and [6] is the date
-        });
-    }
-    else {
-        manualSections.array.push({
-            id: id++,
-            dep: sectionDeatils[2].substring(0, 3),
-            number: sectionDeatils[2].substring(4, 7),
-            name: sectionDeatils[0],
-            section: tempResult[7], //important
-            crn: tempResult[8],
-            // teacher: teacher, // no need
-            // creditHours: getCreditHours(chosenCourseDep, chosenCourseNumber), // no need
-            time: getTimesManually(tempResult[4], tempResult[1], tempResult[2], tempResult[3], 0),  // [4] is the day [1] is the location [2] is the start of class [3] is the end of class and 1 for flag
-            finalExam: getFinalExamManually(tempResult[5], tempResult[6]) //[5] is the time and [6] is the date
-        });
-    }
-
-}
-
 /**==========================================**/
 //                  Objects                   //
 /**==========================================**/
@@ -692,12 +648,6 @@ var sections = {
     }
 };
 
-var manualSections = {
-    array: [],
-    emptyArray: function () {
-        this.array.length = 0;
-    }
-};
 //object to deal with table
 var table = {
     array: []
@@ -957,6 +907,7 @@ $("#getSections").click(function () {
 
 // add sections manullay
 $("#addSections").click(function () {
+    var days = [];
     // This variable stores chosen dep to deal with section number patterns problems (17x - 37x - ...)
     var chosenCourseDep = $("select[name='course-dep'] option:selected")[0].value;
     // This variable used to get credit hours for a course.
@@ -1029,10 +980,6 @@ $("#addSections").click(function () {
                     document.getElementById('exam-start-AM-PM').value
                 ]
             },
-            // html: ' تاريخ الاختبار النهائي : <br><br><input id="swal-booking-date-select" type="date"/>',
-            // preConfirm: () => {
-            //     return document.getElementById('swal-booking-date-select').value
-            // },
             inputValidator: (value) => {
                 return new Promise((resolve) => {
                     if (value === '') {
@@ -1066,12 +1013,6 @@ $("#addSections").click(function () {
                     }
                 })
             }
-            //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
-            //   preConfirm: () => {
-            //       return [
-            //       document.getElementById('check2')
-            //     ]
-            //   }
         },
         {
             title: 'إضافة شعبة يدويًا',
@@ -1102,24 +1043,6 @@ $("#addSections").click(function () {
                     }
                 })
             }
-            // input: 'select',
-            // inputOptions: {
-            //     '7': '07:00 AM',
-            //     '8': '08:00 AM',
-            //     '9': '09:00 AM',
-            //     '10': '10:00 AM',
-            // },
-            // inputPlaceholder: 'اختر وقت البداية',
-            // showCancelButton: true,
-            // inputValidator: (value) => {
-            //     return new Promise((resolve) => {
-            //         if (value === '') {
-            //             resolve('فضلاً اختر أحد الخيارات')
-            //         } else {
-            //             resolve()
-            //         }
-            //     })
-            // }
         },
 
         {
@@ -1153,7 +1076,8 @@ $("#addSections").click(function () {
                     } else if (value === 'نعم') {
                         //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                         Swal.mixin({
-                            confirmButtonText: 'Next &rarr;',
+                            confirmButtonText: 'التالي',
+                            cancelButtonText: 'إلغاء',
                             showCancelButton: true,
                             progressSteps: ['1', '2', '3', '4', '5']
                         }).queue([
@@ -1179,12 +1103,6 @@ $("#addSections").click(function () {
                                         }
                                     })
                                 }
-                                //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
-                                //   preConfirm: () => {
-                                //       return [
-                                //       document.getElementById('check2')
-                                //     ]
-                                //   }
                             },
                             {
                                 title: 'إضافة شعبة يدويًا',
@@ -1215,24 +1133,6 @@ $("#addSections").click(function () {
                                         }
                                     })
                                 }
-                                // input: 'select',
-                                // inputOptions: {
-                                //     '7': '07:00 AM',
-                                //     '8': '08:00 AM',
-                                //     '9': '09:00 AM',
-                                //     '10': '10:00 AM',
-                                // },
-                                // inputPlaceholder: 'اختر وقت البداية',
-                                // showCancelButton: true,
-                                // inputValidator: (value) => {
-                                //     return new Promise((resolve) => {
-                                //         if (value === '') {
-                                //             resolve('فضلاً اختر أحد الخيارات')
-                                //         } else {
-                                //             resolve()
-                                //         }
-                                //     })
-                                // }
                             },
                             {
                                 title: 'إضافة شعبة يدويًا',
@@ -1256,7 +1156,8 @@ $("#addSections").click(function () {
                                         } else if (value === 'نعم') {
                                             //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                                             Swal.mixin({
-                                                confirmButtonText: 'Next &rarr;',
+                                                confirmButtonText: 'التالي',
+                                                cancelButtonText: 'إلغاء',
                                                 showCancelButton: true,
                                                 progressSteps: ['1', '2', '3', '4', '5']
                                             }).queue([
@@ -1282,12 +1183,6 @@ $("#addSections").click(function () {
                                                             }
                                                         })
                                                     }
-                                                    //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
-                                                    //   preConfirm: () => {
-                                                    //       return [
-                                                    //       document.getElementById('check2')
-                                                    //     ]
-                                                    //   }
                                                 },
                                                 {
                                                     title: 'إضافة شعبة يدويًا',
@@ -1318,24 +1213,6 @@ $("#addSections").click(function () {
                                                             }
                                                         })
                                                     }
-                                                    // input: 'select',
-                                                    // inputOptions: {
-                                                    //     '7': '07:00 AM',
-                                                    //     '8': '08:00 AM',
-                                                    //     '9': '09:00 AM',
-                                                    //     '10': '10:00 AM',
-                                                    // },
-                                                    // inputPlaceholder: 'اختر وقت البداية',
-                                                    // showCancelButton: true,
-                                                    // inputValidator: (value) => {
-                                                    //     return new Promise((resolve) => {
-                                                    //         if (value === '') {
-                                                    //             resolve('فضلاً اختر أحد الخيارات')
-                                                    //         } else {
-                                                    //             resolve()
-                                                    //         }
-                                                    //     })
-                                                    // }
                                                 },
                                                 {
                                                     title: 'إضافة شعبة يدويًا',
@@ -1366,11 +1243,10 @@ $("#addSections").click(function () {
                                                             if (value === null) {
                                                                 resolve('فضلاً اختر أحد الخيارات')
                                                             } else if (value === 'نعم') {
-
-
                                                                 //EXTRA STAGE GOES HERE TO GET PLUS ONE NAME
                                                                 Swal.mixin({
-                                                                    confirmButtonText: 'Next &rarr;',
+                                                                    confirmButtonText: 'التالي',
+                                                                    cancelButtonText: 'إلغاء',
                                                                     showCancelButton: true,
                                                                     progressSteps: ['1', '2', '3', '4', '5']
                                                                 }).queue([
@@ -1396,12 +1272,6 @@ $("#addSections").click(function () {
                                                                                 }
                                                                             })
                                                                         }
-                                                                        //   html : '<form><input type="checkbox" id="check1">     الأحد      <input type="checkbox" id="check2">     الإثنين      <input type="checkbox" id="check3">     الثلاثاء      <input type="checkbox" id="check4">     الأربعاء      <input type="checkbox" id="check5">     الخميس      </form>',
-                                                                        //   preConfirm: () => {
-                                                                        //       return [
-                                                                        //       document.getElementById('check2')
-                                                                        //     ]
-                                                                        //   }
                                                                     },
                                                                     {
                                                                         title: 'إضافة شعبة يدويًا',
@@ -1432,24 +1302,6 @@ $("#addSections").click(function () {
                                                                                 }
                                                                             })
                                                                         }
-                                                                        // input: 'select',
-                                                                        // inputOptions: {
-                                                                        //     '7': '07:00 AM',
-                                                                        //     '8': '08:00 AM',
-                                                                        //     '9': '09:00 AM',
-                                                                        //     '10': '10:00 AM',
-                                                                        // },
-                                                                        // inputPlaceholder: 'اختر وقت البداية',
-                                                                        // showCancelButton: true,
-                                                                        // inputValidator: (value) => {
-                                                                        //     return new Promise((resolve) => {
-                                                                        //         if (value === '') {
-                                                                        //             resolve('فضلاً اختر أحد الخيارات')
-                                                                        //         } else {
-                                                                        //             resolve()
-                                                                        //         }
-                                                                        //     })
-                                                                        // }
                                                                     },
                                                                     {
                                                                         title: 'إضافة شعبة يدويًا',
@@ -1511,6 +1363,21 @@ $("#addSections").click(function () {
     ]).then((result) => { // this for regular choise " without more days"
         if (result.value) {
             // var obj = arrangeAddSectionAsObj(result.value);
+            console.log(result.value, days);
+            var obj = {
+                id: id++,
+                dep: chosenCourseDep,
+                number: chosenCourseNumber,
+                name: $("select[name='course-no'] option:selected").text().substring(6),
+                section: result.value[1],
+                crn: result.value[0],
+                time: getTimesArrayManually(result.value[3], result.value[4], days),
+                teacher: "", // no need
+                creditHours: getCreditHours(chosenCourseDep, chosenCourseNumber), // no need
+                finalExam: { time: "", date: result.value[2][0] + '/' + result.value[2][1] + '/' + result.value[2][2] }
+            };
+            console.log(obj);
+            // addSectionToTimetableManually(obj);
             Swal({
                 title: 'خلّصنا !',
                 html:
@@ -1522,7 +1389,6 @@ $("#addSections").click(function () {
             })
         }
     })
-
 
 });
 
