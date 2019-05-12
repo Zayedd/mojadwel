@@ -396,9 +396,9 @@ function addSectionToTimetable(addSectionButton, rowID) {
         });
 
         // Alert the user if exceeded 19 credits
-        if (totalCredits > 19) {
+        if (totalCredits > 12) {
             setTimeout(() => {
-                swal("تنبيه!", "لقد تجاوزت الحد المسموح به في عدد الوحدات(١٩ وحدة)", {
+                swal("تنبيه!", "لقد تجاوزت الحد المسموح به في عدد الوحدات(١٢ وحدة)", {
                     buttons: "حسناً",
                     icon: "error"
                 });
@@ -631,11 +631,11 @@ $("select[name='gender']").change(function () {
     // Enable course number choice
     $("select[name='course-no']").removeAttr("disabled");
     // Remove unusable time rows when gender is chosen
-    if (isMale) {
-        $("#timetable tbody tr").slice(0, 30).remove();
-    } else {
-        $("#timetable tbody tr").slice(114).remove();
-    }
+    // if (isMale) {
+    //     $("#timetable tbody tr").slice(0, 30).remove();
+    // } else {
+    //     $("#timetable tbody tr").slice(114).remove();
+    // }
 });
 
 // Change course numbers when department is changed
@@ -712,7 +712,8 @@ $("#getSections").click(function () {
     loader.toggleClass("d-none");
 
 
-    $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144020&subj_in='
+    $.getJSON('http://www.whateverorigin.org/get?url=' +
+        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144030&subj_in='
         + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
         + $("select[name='course-no'] option:selected").text().substring(0,3)
         + '&schd_in=01') + '&callback=?', function(data){
