@@ -369,7 +369,7 @@ function addSectionToTimetable(addSectionButton, rowID) {
                     selectedCell.html(
                         '<span class="float-right">' + lastElementInTableArray.dep + ' ' + lastElementInTableArray.number + ' - ' + lastElementInTableArray.section + '</span>' +
                         '<span class="float-left d-none d-md-block">' + lastElementInTableArray.time[i].times[0].substring(0, 2) + ':' + lastElementInTableArray.time[i].times[0].substring(2, 4) + '</span><br>' +
-                        '<span>' + (lastElementInTableArray.name.length > 15 ? lastElementInTableArray.name.substring(0, 15) + "..." : lastElementInTableArray.name) + '</span><br>' +
+                        '<span>' + (lastElementInTableArray.name.length > 9 ? lastElementInTableArray.name.substring(0, 9) + "..." : lastElementInTableArray.name) + '</span><br>' +
                         '<span class="float-right">' + lastElementInTableArray.time[i].location + '</span>' +
                         '<span class="float-left d-none d-md-block">' + getEndOfLectureTimeForTimetable(lastElementInTableArray.time[i].times[lastElementInTableArray.time[i].times.length - 1].substring(0, 2), lastElementInTableArray.time[i].times[lastElementInTableArray.time[i].times.length - 1].substring(2, 4)) + '</span>'
                     );
