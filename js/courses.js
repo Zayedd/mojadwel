@@ -174,6 +174,11 @@ var isCourses = [
         name: "نظم دعم اتخاذ القرار"
     },
     {
+        creditHours: 3,
+        number: 339,
+        name: "تحليل وتصميم النظم"
+    },
+    {
         creditHours: 4,
         number: 371,
         name: "نظم إدارة قواعد البيانات التطبيقية"
@@ -217,6 +222,11 @@ var isCourses = [
         creditHours: 3,
         number: 441,
         name: "إدارة المشاريع"
+    },
+    {
+        creditHours: 3,
+        number: 489,
+        name: "أمن المعلومات"
     },
     {
         creditHours: 2,
