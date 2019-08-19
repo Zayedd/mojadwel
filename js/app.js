@@ -353,7 +353,6 @@ function addSectionToTimetable(addSectionButton, rowID) {
         addSectionButton.css('cursor', 'not-allowed');
         table.array.push(sections.array[rowID]);
         table.array[table.array.length - 1].id = id++;
-        DB.addToDB(table.array[table.array.length - 1]);
         table.array[table.array.length - 1].color = getColor();
 
         // Update total credit hours
@@ -414,6 +413,9 @@ function addSectionToTimetable(addSectionButton, rowID) {
 
         // Check for final exams confilcts
         checkForFinalExamConflicts(table.array[table.array.length - 1]);
+
+        // Add to DB
+        DB.addToDB(table.array[table.array.length - 1]);
     }
 }
 function initTimeTable(sectionsArr) {
@@ -610,16 +612,24 @@ var DB = (function () {
 
     return {
         addToDB: function (obj) {
-            db = request.result;
-            tx = db.transaction("SectionsStore", "readwrite");
-            store = tx.objectStore("SectionsStore");
-            store.put(obj);
+            try {
+                db = request.result;
+                tx = db.transaction("SectionsStore", "readwrite");
+                store = tx.objectStore("SectionsStore");
+                store.put(obj);
+            } catch (e) {
+                console.error(e);
+            }
         },
         removeFromDB: function (crn) {
-            db = request.result;
-            tx = db.transaction("SectionsStore", "readwrite");
-            store = tx.objectStore("SectionsStore");
-            store.delete(crn);
+            try {
+                db = request.result;
+                tx = db.transaction("SectionsStore", "readwrite");
+                store = tx.objectStore("SectionsStore");
+                store.delete(crn);
+            } catch (e) {
+                console.error(e);
+            }
         }
     };
 
