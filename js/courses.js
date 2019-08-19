@@ -225,6 +225,11 @@ var isCourses = [
     },
     {
         creditHours: 3,
+        number: 459,
+        name: "نظم معلومات المؤسسات"
+    },
+    {
+        creditHours: 3,
         number: 489,
         name: "أمن المعلومات"
     },
@@ -782,6 +787,11 @@ var trkCourses = [
     creditHours: 2,
     number: 101,
     name: "السيرة النبوية"
+    },
+    {
+        creditHours: 2,
+        number: 102,
+        name: "تاريخ المملكة العربية السعودية"
     }
 ];
 
