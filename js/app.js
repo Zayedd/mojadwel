@@ -294,7 +294,9 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
             if (
                 Math.floor(sectionDeatils[3]/10) === 17
                 ||
-                (chosenCourseDep == "cs" && chosenCourseNumber === 141 && sectionDeatils[3] === "071")
+                (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "071")
+                ||
+                (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "071")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
@@ -308,7 +310,7 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 Math.floor(sectionDeatils[3]/10) === 37
                 ||
                 (
-                    (chosenCourseDep == "it" || chosenCourseDep == "nho" || chosenCourseDep == "mgmt" || chosenCourseDep == "phys" || chosenCourseDep == "eng" || chosenCourseDep == "cs")
+                    (chosenCourseDep == "it" || chosenCourseDep == "nho" || chosenCourseDep == "mgmt" || chosenCourseDep == "phys" || chosenCourseDep == "eng" || chosenCourseDep == "cs" || chosenCourseDep == "is" || chosenCourseDep == "infoStudies")
                     && Math.floor(sectionDeatils[3]/10) === 27
                 )
             ) {
@@ -689,16 +691,6 @@ $("#getSections").click(function () {
         return;
     }
 
-    // Discard trk sections due to strange section number patterns.
-    if (isMale && chosenCourseDep === "trk") {
-        swal("نواجه مشكلة في مادة السيرة النبوية، من فضلك راجع شعب السيرة النبوية من ملف الشعب.", {
-            button: "حسناً",
-            icon: "info"
-        });
-
-        return;
-    }
-
     var getSectionsButton = $("#getSections");
     var loader = $(".loader");
     var section = $("select[name='course-dep'] option:selected").text() + ' - ' + $("select[name='course-no'] option:selected").text();
@@ -733,6 +725,14 @@ $("#getSections").click(function () {
         if (sections.array.length === 0) {
             swal("لا يوجد شعب متاحة لمادة:", section, "error", {button: "حسناً"});
         }
+
+      // Discard trk sections due to strange section number patterns.
+      if (isMale && chosenCourseDep === "trk" && chosenCourseNumber === 101) {
+        swal("هناك شعب أخرى لمادة السيرة النبوية في كليات أخرى، من فضلك تأكد منها في ملف الشعب", {
+          button: "حسناً",
+          icon: "info"
+        });
+      }
 
         //Hide loader
         loader.toggleClass("d-none");
