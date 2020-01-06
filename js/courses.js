@@ -150,13 +150,23 @@ var isCourses = [
     },
     {
         creditHours: 3,
-        number: 229,
-        name: "مقدمة في قواعد البيانات"
+        number: 201,
+        name: "أسس نظم المعلومات"
     },
     {
         creditHours: 3,
         number: 203,
         name: "برمجة الويب"
+    },
+    {
+        creditHours: 3,
+        number: 320,
+        name: "مقدمة في قواعد البيانات"
+    },
+    {
+        creditHours: 3,
+        number: 230,
+        name: "تحليل متطلبات الأعمال"
     },
     {
         creditHours: 4,
@@ -179,9 +189,14 @@ var isCourses = [
         name: "تحليل وتصميم النظم"
     },
     {
+        creditHours: 3,
+        number: 332,
+        name: "نظم دعم إتخاذ القرار"
+    },
+    {
         creditHours: 4,
         number: 371,
-        name: "نظم إدارة قواعد البيانات التطبيقية"
+        name: "إدارة قواعد البيانات التطبيقية"
     },
     {
         creditHours: 1,
