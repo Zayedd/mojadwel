@@ -850,3 +850,11 @@ var adbCourses = [
         name: "التحرير العربي"
     }
 ];
+
+var daoCourses = [
+    {
+        creditHours: 2,
+        number: 129,
+        name: "الدعوة الإصلاحية"
+    }
+];

@@ -190,6 +190,7 @@ function getCreditHours(dep, number) {
         case "trk": courseObject = trkCourses; break;
         case "thqf": courseObject = thqfCourses; break;
         case "adb": courseObject = adbCourses; break;
+        case "dao": courseObject = daoCourses; break;
     }
 
     var creditHours = courseObject.find(o => o.number === number).creditHours;
@@ -684,6 +685,7 @@ $("select[name='course-dep']").change(function () {
         case "trk": showCourseNumbers(trkCourses); break;
         case "thqf": showCourseNumbers(thqfCourses); break;
         case "adb": showCourseNumbers(adbCourses); break;
+        case "dao": showCourseNumbers(daoCourses); break;
     }
 });
 
