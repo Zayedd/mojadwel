@@ -297,6 +297,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "071")
                 ||
                 (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "071")
+                ||
+                (chosenCourseDep == "cs" && sectionDeatils[3] === "071")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
@@ -720,7 +722,7 @@ $("#getSections").click(function () {
 
 
     $.getJSON('http://www.whateverorigin.org/get?url=' +
-        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144110&subj_in='
+        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144120&subj_in='
         + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
         + $("select[name='course-no'] option:selected").text().substring(0,3)
         + '&schd_in=01') + '&callback=?', function(data){
