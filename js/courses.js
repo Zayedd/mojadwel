@@ -7,8 +7,18 @@ var csCourses = [
     },
     {
         creditHours: 3,
+        number: 114,
+        name: "تراكيب محددة ١"
+    },
+    {
+        creditHours: 3,
         number: 106,
         name: "المنطق الرقمي"
+    },
+    {
+        creditHours: 4,
+        number: 125,
+        name: "تصميم المنطق الرقمي"
     },
     {
         creditHours: 4,
@@ -19,6 +29,21 @@ var csCourses = [
         creditHours: 4,
         number: 141,
         name: "برمجة الحاسبات ٢"
+    },
+    {
+        creditHours: 4,
+        number: 150,
+        name: "مقدمة في برمجة الحاسبات"
+    },
+    {
+        creditHours: 4,
+        number: 151,
+        name: "البرمجة الشيئية"
+    },
+    {
+        creditHours: 2,
+        number: 180,
+        name: "الأمن السيبراني والأخلاقيات"
     },
     {
         creditHours: 3,
