@@ -656,6 +656,11 @@ var infoMgmtCourses = [
 var mathCourses = [
     {
         creditHours: 4,
+        number: 101,
+        name: "حساب التفاضل والتكامل ١"
+    },
+    {
+        creditHours: 4,
         number: 113,
         name: "حساب التفاضل والتكامل التطبيقي ١"
     },
