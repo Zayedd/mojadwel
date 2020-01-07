@@ -746,6 +746,11 @@ var engCourses = [
     },
     {
         creditHours: 3,
+        number: 141,
+        name: "انجليزي ٢"
+    },
+    {
+        creditHours: 3,
         number: 208,
         name: "الكتابة التقنية"
     }
