@@ -652,7 +652,7 @@ $("select[name='gender']").change(function () {
     $("select[name='course-no']").removeAttr("disabled");
     // Remove unusable time rows when gender is chosen
     if (isMale) {
-        $("#timetable tbody tr").slice(0, 30).remove();
+        $("#timetable tbody tr").slice(0, 6).remove();
     } else {
         $("#timetable tbody tr").slice(114).remove();
     }
@@ -724,7 +724,7 @@ $("#getSections").click(function () {
 
 
     $.getJSON('http://www.whateverorigin.org/get?url=' +
-        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144120&subj_in='
+        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144130&subj_in='
         + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
         + $("select[name='course-no'] option:selected").text().substring(0,3)
         + '&schd_in=01') + '&callback=?', function(data){
