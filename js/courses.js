@@ -86,6 +86,11 @@ var csCourses = [
         name: "تراكيب البيانات"
     },
     {
+        creditHours: 4,
+        number: 252,
+        name: "تراكيب البيانات"
+    },
+    {
         creditHours: 3,
         number: 310,
         name: "هندسة البرمجيات"
