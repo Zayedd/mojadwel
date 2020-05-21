@@ -47,6 +47,11 @@ var csCourses = [
     },
     {
         creditHours: 3,
+        number: 205,
+        name: "تراكيب محددة ٢"
+    },
+    {
+        creditHours: 3,
         number: 215,
         name: "تصميم وتحليل الخوارزميات"
     },
@@ -58,6 +63,11 @@ var csCourses = [
     {
         creditHours: 4,
         number: 221,
+        name: "عمارة الحاسبات"
+    },
+    {
+        creditHours: 4,
+        number: 228,
         name: "عمارة الحاسبات"
     },
     {
