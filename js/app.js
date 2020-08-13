@@ -17,12 +17,15 @@ var totalCredits = 0;
 /**==========================================**/
 //                 Functions                  //
 /**==========================================**/
+// TODO: Refactor to get courses from the backend
 function showCourseNumbers(arry) {
     $("option[value='courseNumber']").remove();
     arry.forEach(function(element){
         $("select[name='course-no']").append("<option value='courseNumber'>" + element.number + " - " + element.name +"</option>");
     });
 }
+
+// TODO: Move to Backend
 function getTextTime(tbody) {
     var textTime = "";
     var allTRs = $(tbody).find('tr');
@@ -57,6 +60,7 @@ function getTextTime(tbody) {
     }
     return textTime;
 }
+// TODO: Move to Backend
 function getTeacherName(tbody) {
     var teacherName = "";
     var allTRs = $(tbody).find('tr');
@@ -64,6 +68,7 @@ function getTeacherName(tbody) {
     teacherName = $(allTDs[6]).text().replace("(P)", "");
     return teacherName;
 }
+// TODO: Move to Backend
 function getNumberOfDay(charachterOfDay) {
     switch (charachterOfDay) {
         case 'U': return 1;
@@ -73,6 +78,7 @@ function getNumberOfDay(charachterOfDay) {
         case 'R': return 5;
     }
 }
+// TODO: Move to Backend
 function getTimesArray(tbody) {
     var times = [];
     var timeSlots = [];
@@ -163,6 +169,7 @@ function getEndOfLectureTimeForTimetable(hours, minutes) {
         return hours + ":" + minutes;
     }
 }
+// TODO: Move to Backend
 function getCreditHours(dep, number) {
     var courseObject;
     switch (dep) {
@@ -196,6 +203,7 @@ function getCreditHours(dep, number) {
     var creditHours = courseObject.find(o => o.number === number).creditHours;
     return creditHours;
 }
+// TODO: Move to Backend
 function getFinalExam(tbody) {
     var allTRs = $(tbody).find('tr');
     var allTDs;
@@ -238,6 +246,7 @@ function checkForFinalExamConflicts(lastAddedElement) {
         }
     });
 }
+// TODO: Refactor
 function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber) {
     //allDeatis will be an array of "tr" objects of each row of datadisplaytable tables
     var allDetails = $(allTitles).parent().next().find("tbody")[0];
@@ -286,6 +295,7 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
         }
     }
 }
+// TODO: Refactor to Call the Backend
 function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
     var sectionDeatils;
     var sectionID = 0;
@@ -300,6 +310,12 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "071")
                 ||
                 (chosenCourseDep == "cs" && sectionDeatils[3] === "071")
+                ||
+                (chosenCourseDep == "cs" && sectionDeatils[3] === "072")
+                ||
+                (chosenCourseDep == "cs" && sectionDeatils[3] === "073")
+                ||
+                (chosenCourseDep == "cs" && sectionDeatils[3] === "074")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
@@ -724,7 +740,7 @@ $("#getSections").click(function () {
 
 
     $.getJSON('http://www.whateverorigin.org/get?url=' +
-        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144130&subj_in='
+        encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144210&subj_in='
         + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
         + $("select[name='course-no'] option:selected").text().substring(0,3)
         + '&schd_in=01') + '&callback=?', function(data){
