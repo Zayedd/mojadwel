@@ -736,6 +736,11 @@ var econCourses = [
         creditHours: 3,
         number: 101,
         name: "الاقتصاد الجزئي"
+    },
+    {
+        creditHours: 3,
+        number: 105,
+        name: "الاقتصاد الجزئي"
     }
 ];
 
