@@ -778,6 +778,11 @@ var engCourses = [
         creditHours: 3,
         number: 208,
         name: "الكتابة التقنية"
+    },
+    {
+        creditHours: 3,
+        number: 210,
+        name: "الكتابة التقنية"
     }
 ];
 
