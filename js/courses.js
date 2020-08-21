@@ -676,6 +676,11 @@ var mathCourses = [
     },
     {
         creditHours: 4,
+        number: 102,
+        name: " حساب التفاضل والتكامل التطبيقي ٢"
+    },
+    {
+        creditHours: 4,
         number: 113,
         name: "حساب التفاضل والتكامل التطبيقي ١"
     },
@@ -726,6 +731,11 @@ var econCourses = [
     creditHours: 2,
     number: 100,
     name: "مبادئ الاقتصاد"
+    },
+    {
+        creditHours: 3,
+        number: 101,
+        name: "الاقتصاد الجزئي"
     }
 ];
 
