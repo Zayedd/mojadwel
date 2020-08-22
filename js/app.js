@@ -299,15 +299,26 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
 function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
     var sectionDeatils;
     var sectionID = 0;
+    var sectionBranch;
+    var sectionLocation;
     if (isMale) {
         for (var i = 0; i < allTitles.length; i++) {
             sectionDeatils = $(allTitles[i]).text().split(" - ");
+            sectionBranch = $(allTitles[i]).parent().next().text();
+            sectionBranch = sectionBranch.substr(sectionBranch.indexOf("الفرع"), 37).trim();
+            sectionLocation = $(allTitles[i]).parent().next().text();
+            sectionLocation = sectionLocation.substr(sectionLocation.indexOf("النوع"));
+            console.log(sectionLocation.includes("الحاسب"));
             if (
                 Math.floor(sectionDeatils[3]/10) === 17
                 ||
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "071")
                 ||
-                (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "071")
+                (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "072")
+                ||
+                (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "073")
+                ||
+                (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "074")
                 ||
                 (chosenCourseDep == "cs" && sectionDeatils[3] === "071")
                 ||
@@ -316,6 +327,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 (chosenCourseDep == "cs" && sectionDeatils[3] === "073")
                 ||
                 (chosenCourseDep == "cs" && sectionDeatils[3] === "074")
+                ||
+                sectionDeatils[3].includes("E") && sectionBranch.includes("الفرع المدينة الجامعية انتظام - طلاب") && sectionLocation.includes("الحاسب")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
@@ -325,6 +338,11 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
     } else {
         for (var i = 0; i < allTitles.length; i++) {
             sectionDeatils = $(allTitles[i]).text().split(" - ");
+            sectionBranch = $(allTitles[i]).parent().next().text();
+            sectionBranch = sectionBranch.substr(sectionBranch.indexOf("الفرع"), 37).trim();
+            sectionLocation = $(allTitles[i]).parent().next().text();
+            sectionLocation = sectionLocation.substr(sectionLocation.indexOf("النوع"));
+            console.log(sectionLocation.includes("الحاسب-طالبات"));
             if (
                 Math.floor(sectionDeatils[3]/10) === 37
                 ||
@@ -332,6 +350,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                     (chosenCourseDep == "it" || chosenCourseDep == "nho" || chosenCourseDep == "mgmt" || chosenCourseDep == "phys" || chosenCourseDep == "eng" || chosenCourseDep == "cs" || chosenCourseDep == "is" || chosenCourseDep == "infoStudies")
                     && Math.floor(sectionDeatils[3]/10) === 27
                 )
+                ||
+                sectionDeatils[3].includes("E") && sectionBranch.includes("الفرع مد الملك عبدالله انتظام-طالبات") && sectionLocation.includes("الحاسب-طالبات")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
