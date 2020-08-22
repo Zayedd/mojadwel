@@ -328,6 +328,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 ||
                 (chosenCourseDep == "cs" && sectionDeatils[3] === "074")
                 ||
+                (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("0"))
+                ||
                 sectionDeatils[3].includes("E") && sectionBranch.includes("الفرع المدينة الجامعية انتظام - طلاب") && sectionLocation.includes("الحاسب")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
@@ -352,6 +354,10 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 )
                 ||
                 sectionDeatils[3].includes("E") && sectionBranch.includes("الفرع مد الملك عبدالله انتظام-طالبات") && sectionLocation.includes("الحاسب-طالبات")
+                ||
+                (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "380")
+                ||
+                (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("3") && sectionDeatils[3] !== "397")
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
