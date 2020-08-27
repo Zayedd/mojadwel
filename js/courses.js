@@ -859,6 +859,11 @@ var nhoCourses = [
     },
     {
         creditHours: 2,
+        number: 105,
+        name: "النحو"
+    },
+    {
+        creditHours: 2,
         number: 201,
         name: "النحو التطبيقي"
     }
