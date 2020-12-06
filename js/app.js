@@ -273,6 +273,8 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
         "<td>" + lastAddedSection.section + "</td>" +
         "<td>" + teacher + "</td>" +
         "<td class='crn'>" + lastAddedSection.crn + "</td>" +
+        "<td>" + (lastAddedSection.finalExam.date ? (lastAddedSection.finalExam.date === "لا يوجد" ? lastAddedSection.finalExam.date : lastAddedSection.finalExam.date.substring(0, 10) + "<br>") : "")  +
+        (lastAddedSection.finalExam.time ? "<span dir='ltr'>" + lastAddedSection.finalExam.time + "</span>" : "") + "</td>" +
         "<td dir='ltr'>" + getTextTime(allDetails) + "</td>" +
         "<td>" +
         "<button type=\"button\" class=\"add\">+</button>" +
