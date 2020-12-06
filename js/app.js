@@ -58,7 +58,12 @@ function getTextTime(tbody) {
         days = $(allTDs[2]).text();
         textTime += time + " : " + days + "<br/>";
     }
-    return textTime;
+    return textTime
+        .replaceAll("U", "أحد ")
+        .replaceAll("M", "أثنين ")
+        .replaceAll("T", "ثلاثاء ")
+        .replaceAll("W", "أربعاء ")
+        .replaceAll("R", "خميس ");
 }
 // TODO: Move to Backend
 function getTeacherName(tbody) {
