@@ -278,11 +278,9 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
         "<td>" + lastAddedSection.section + "</td>" +
         "<td>" + teacher + "</td>" +
         "<td class='crn'>" + lastAddedSection.crn + "</td>" +
-        "<td>" + (lastAddedSection.finalExam.date ? (lastAddedSection.finalExam.date === "لا يوجد" ? lastAddedSection.finalExam.date : lastAddedSection.finalExam.date.substring(0, 10) + "<br>") : "")  +
-        (lastAddedSection.finalExam.time ? "<span dir='ltr'>" + lastAddedSection.finalExam.time + "</span>" : "") + "</td>" +
         "<td dir='ltr'>" + getTextTime(allDetails) + "</td>" +
         "<td>" +
-        "<button type=\"button\" class=\"add\">+</button>" +
+        "<img src=\"img/Add_Enable.svg\" class=\"add svg-button\"/><img src=\"img/Add_Disable.svg\" class=\"add-disabled svg-button d-none\"/>" +
         "</td>" +
         "</tr>"
     );
@@ -294,10 +292,9 @@ function addFoundedSectionToSections(allTitles, sectionDeatils, sectionID, chose
     var crn = sectionDeatils[1];
     for (var j = 0; j < table.array.length; j++) {
         if (table.array[j].crn === crn) {
-            var addSectionButton = $("#" + sectionID + " button");
-            addSectionButton.attr('disabled', 'true');
-            addSectionButton.toggleClass("btn-secondary");
-            addSectionButton.css('cursor', 'not-allowed');
+            var addSectionButton = $("#" + sectionID + " .add");
+            addSectionButton.toggleClass("d-none");
+            addSectionButton.siblings().toggleClass("d-none");
             break;
         }
     }
@@ -400,9 +397,9 @@ function addSectionToTimetable(addSectionButton, rowID) {
     if (conflictExists) {
         swal("هناك تعارض!", conflictMessage, "error", {button: "حسناً"});
     } else {
-        addSectionButton.attr('disabled', 'true');
-        addSectionButton.toggleClass("btn-secondary");
-        addSectionButton.css('cursor', 'not-allowed');
+        addSectionButton.toggleClass("d-none"); // d-none
+        $(addSectionButton).siblings().toggleClass("d-none");
+
         table.array.push(sections.array[rowID]);
         table.array[table.array.length - 1].id = id++;
         table.array[table.array.length - 1].color = getColor();
@@ -439,7 +436,7 @@ function addSectionToTimetable(addSectionButton, rowID) {
         $("#added-sections-table tr:nth-child(4)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.crn + '</td>');
         $("#added-sections-table tr:nth-child(2)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.creditHours + '</td>');
         $("#added-sections-table tr:nth-child(3)").append('<td class="cell-' + lastElementInTableArray.id + '" dir="ltr">' + lastElementInTableArray.finalExam.date.substring(0, 10) + "<br>" + lastElementInTableArray.finalExam.time + '</td>');
-        $("#added-sections-table tr:nth-child(5)").append('<td class="cell-' + lastElementInTableArray.id + '"><button type="button" class="remove-button">-</button></td>');
+        $("#added-sections-table tr:nth-child(5)").append('<td class="cell-' + lastElementInTableArray.id + '"><img src="img/Delete.svg" class="remove-button svg-button"/></td>');
 
         // Show added sections table when first section is added
         if (table.array.length === 1) {
@@ -508,7 +505,7 @@ function initTimeTable(sectionsArr) {
             $("#added-sections-table tr:nth-child(4)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.crn + '</td>');
             $("#added-sections-table tr:nth-child(2)").append('<td class="cell-' + lastElementInTableArray.id + '">' + lastElementInTableArray.creditHours + '</td>');
             $("#added-sections-table tr:nth-child(3)").append('<td class="cell-' + lastElementInTableArray.id + '" dir="ltr">' + lastElementInTableArray.finalExam.date.substring(0, 10) + "<br>" + lastElementInTableArray.finalExam.time + '</td>');
-            $("#added-sections-table tr:nth-child(5)").append('<td class="cell-' + lastElementInTableArray.id + '"><button type="button" class="remove-button">-</button></td>');
+            $("#added-sections-table tr:nth-child(5)").append('<td class="cell-' + lastElementInTableArray.id + '"><img src="img/Delete.svg" class="remove-button svg-button"/></td>');
 
             // Show added sections table when first section is added
             if (table.array.length === 1) {
@@ -878,10 +875,9 @@ $("#added-sections-table").on("click", ".remove-button", function () {
     // Clear add section button if exists in sections table.
     for (var i = 0; i < sections.array.length; i++) {
         if (sections.array[i].crn === table.array[index].crn) {
-            var addSectionButton = $("#" + i + " button");
-            addSectionButton.removeAttr('disabled');
-            addSectionButton.toggleClass("btn-secondary");
-            addSectionButton.css('cursor', 'pointer');
+            var addSectionButton = $("#" + i + " .add-disabled");
+            addSectionButton.toggleClass('d-none');
+            addSectionButton.siblings().toggleClass("d-none");
         }
     }
     // Update total credit hours
