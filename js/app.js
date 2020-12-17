@@ -60,7 +60,7 @@ function getTextTime(tbody) {
     }
     return textTime
         .replaceAll("U", "أحد ")
-        .replaceAll("M", "أثنين ")
+        .replaceAll("M", "اثنين ")
         .replaceAll("T", "ثلاثاء ")
         .replaceAll("W", "أربعاء ")
         .replaceAll("R", "خميس ");
@@ -925,7 +925,7 @@ $("#export-as-image").click(function() {
             window.open(uri);
         }
     }
-    html2canvas(document.querySelector('#timetable tbody')).then(function(canvas) {
+    html2canvas(document.querySelector('#timetable')).then(function(canvas) {
         saveAs(canvas.toDataURL(), 'جدول.png');
     });
 });
