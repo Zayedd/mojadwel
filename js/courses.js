@@ -801,246 +801,246 @@ var infoMgmtCourses = [
 // ** Science College ** \\
 var mathCourses = [
     {
-        creditHours: 4,
         number: 101,
-        name: "حساب التفاضل والتكامل ١"
+        name: "حساب التفاضل والتكامل ١",
+        creditHours: 4
     },
     {
-        creditHours: 4,
         number: 102,
-        name: " حساب التفاضل والتكامل التطبيقي ٢"
+        name: " حساب التفاضل والتكامل ٢",
+        creditHours: 4
     },
     {
-        creditHours: 4,
         number: 113,
-        name: "حساب التفاضل والتكامل التطبيقي ١"
+        name: "حساب التفاضل والتكامل التطبيقي ١",
+        creditHours: 4
     },
     {
-        creditHours: 4,
         number: 114,
-        name: "حساب التفاضل والتكامل التطبيقي ٢"
+        name: "حساب التفاضل والتكامل التطبيقي ٢",
+        creditHours: 4
     },
     {
-        creditHours: 4,
         number: 227,
-        name: "جبر خطي ومعادلات تفاضلية"
+        name: "جبر خطي ومعادلات تفاضلية",
+        creditHours: 4
     }
 ];
 
 var statCourses = [
     {
-    creditHours: 3,
     number: 111,
-    name: "مقدمة في الاحتمالات والإحصاء"
+    name: "مقدمة في الاحتمالات والإحصاء",
+    creditHours: 3,
     }
 ];
 
 var physCourses = [
     {
-        creditHours: 3,
         number: 103,
-        name: "الفيزياء العامة"
+        name: "الفيزياء العامة",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 104,
-        name: "فيزياء تطبيقية"
+        name: "فيزياء تطبيقية",
+        creditHours: 3,
     }
 ];
 
 // ** MGMT College ** \\
 var accoCourses = [
     {
-    creditHours: 3,
     number: 100,
-    name: "مبادئ المحاسبة"
+    name: "مبادئ المحاسبة",
+    creditHours: 3,
     }
 ];
 
 var econCourses = [
     {
-    creditHours: 2,
     number: 100,
-    name: "مبادئ الاقتصاد"
+    name: "مبادئ الاقتصاد",
+    creditHours: 2,
     },
     {
-        creditHours: 3,
         number: 101,
-        name: "الاقتصاد الجزئي"
+        name: "الاقتصاد الجزئي",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 105,
-        name: "الاقتصاد الجزئي"
+        name: "الاقتصاد الجزئي",
+        creditHours: 3,
     }
 ];
 
 var mgmtCourses = [
     {
-        creditHours: 3,
         number: 100,
-        name: "مقدمة في إدارة الأعمال"
-    },
-    {
+        name: "مقدمة في إدارة الأعمال",
         creditHours: 3,
-        number: 325,
-        name: "السلوك التنظيمي"
     },
     {
-        creditHours: 2,
+        number: 325,
+        name: "السلوك التنظيمي",
+        creditHours: 3,
+    },
+    {
         number: 462,
-        name: "إدارة الجودة الشاملة"
+        name: "إدارة الجودة الشاملة",
+        creditHours: 2,
     }
 ];
 
 // ** English College ** \\
 var engCourses = [
     {
-        creditHours: 3,
         number: 140,
-        name: "اللغة الإنجليزية ١"
+        name: "اللغة الإنجليزية ١",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 190,
-        name: "اللغة الإنجليزية ٢"
+        name: "اللغة الإنجليزية ٢",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 141,
-        name: "انجليزي ٢"
+        name: "انجليزي ٢",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 208,
-        name: "الكتابة التقنية"
+        name: "الكتابة التقنية",
+        creditHours: 3,
     },
     {
-        creditHours: 3,
         number: 210,
-        name: "الكتابة التقنية"
+        name: "الكتابة التقنية",
+        creditHours: 3,
     }
 ];
 
 // ** General Courses ** \\
 var qurCourses = [
     {
-        creditHours: 1,
         number: 101,
-        name: "القرآن الكريم ١"
+        name: "القرآن الكريم ١",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 151,
-        name: "القرآن الكريم ٢"
+        name: "القرآن الكريم ٢",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 201,
-        name: "القرآن الكريم ٣"
+        name: "القرآن الكريم ٣",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 251,
-        name: "القرآن الكريم ٤"
+        name: "القرآن الكريم ٤",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 301,
-        name: "القرآن الكريم ٥"
+        name: "القرآن الكريم ٥",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 351,
-        name: "القرآن الكريم ٦"
+        name: "القرآن الكريم ٦",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 401,
-        name: "القرآن الكريم ٧"
+        name: "القرآن الكريم ٧",
+        creditHours: 1,
     },
     {
-        creditHours: 1,
         number: 451,
-        name: "القرآن الكريم ٨"
+        name: "القرآن الكريم ٨",
+        creditHours: 1,
     }
 ];
 
 var aqdCourses = [
     {
-    creditHours: 2,
     number: 133,
-    name: "التوحيد"
+    name: "التوحيد",
+    creditHours: 2,
     }
 ];
 
 var fqhCourses = [
     {
-    creditHours: 2,
     number: 200,
-    name: "الفقه"
+    name: "الفقه",
+    creditHours: 2,
     }
 ];
 
 var nhoCourses = [
     {
-        creditHours: 2,
         number: 104,
-        name: "النحو"
+        name: "النحو",
+        creditHours: 2,
     },
     {
-        creditHours: 2,
         number: 105,
-        name: "النحو"
+        name: "النحو",
+        creditHours: 2,
     },
     {
-        creditHours: 2,
         number: 201,
-        name: "النحو التطبيقي"
+        name: "النحو التطبيقي",
+        creditHours: 2,
     }
 ];
 
 var elmCourses = [
     {
-    creditHours: 2,
     number: 207,
-    name: "مهارات الاتصال"
+    name: "مهارات الاتصال",
+    creditHours: 2,
     }
 ];
 
 var trkCourses = [
     {
-    creditHours: 2,
     number: 101,
-    name: "السيرة النبوية"
+    name: "السيرة النبوية",
+    creditHours: 2,
     },
     {
-        creditHours: 2,
         number: 102,
-        name: "تاريخ المملكة العربية السعودية"
+        name: "تاريخ المملكة العربية السعودية",
+        creditHours: 2,
     }
 ];
 
 var thqfCourses = [
     {
-    creditHours: 2,
     number: 101,
-    name: "الثقافة الإسلامية"
+    name: "الثقافة الإسلامية",
+    creditHours: 2,
     }
 ];
 
 var adbCourses = [
     {
-        creditHours: 2,
         number: 102,
-        name: "التحرير العربي"
+        name: "التحرير العربي",
+        creditHours: 2,
     }
 ];
 
 var daoCourses = [
     {
-        creditHours: 2,
         number: 129,
-        name: "الدعوة الإصلاحية"
+        name: "الدعوة الإصلاحية",
+        creditHours: 2,
     }
 ];
