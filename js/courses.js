@@ -314,125 +314,285 @@ var csCourses = [
 ];
 
 var isCourses = [
+    // New Curriculum
     {
-        creditHours: 3,
-        number: 200,
-        name: "مدخل إلى نظم المعلومات"
-    },
-    {
-        creditHours: 3,
         number: 201,
-        name: "أسس نظم المعلومات"
+        name: "أسس نظم المعلومات",
+        creditHours: 3,
+        curriculum: 2
     },
     {
-        creditHours: 3,
-        number: 203,
-        name: "برمجة الويب"
-    },
-    {
-        creditHours: 3,
-        number: 229,
-        name: "مقدمة في قواعد البيانات"
-    },
-    {
-        creditHours: 3,
-        number: 320,
-        name: "مقدمة في قواعد البيانات"
-    },
-    {
-        creditHours: 3,
         number: 230,
-        name: "تحليل متطلبات الأعمال"
-    },
-    {
-        creditHours: 4,
-        number: 309,
-        name: "تحليل وتصميم النظم"
-    },
-    {
+        name: "تحليل متطلبات الأعمال",
         creditHours: 3,
-        number: 320,
-        name: "مقدمة في قواعد البيانات"
+        curriculum: 2
     },
     {
+        number: 220,
+        name: "مقدمة في قواعد البيانات",
         creditHours: 3,
-        number: 332,
-        name: "نظم دعم اتخاذ القرار"
+        curriculum: 2
     },
     {
+        number: 321,
+        name: "نظم إدارة قواعد البيانات",
         creditHours: 3,
-        number: 339,
-        name: "تحليل وتصميم النظم"
+        curriculum: 2
     },
     {
+        number: 230,
+        name: "تحليل متطلبات الأعمال",
         creditHours: 3,
-        number: 332,
-        name: "نظم دعم إتخاذ القرار"
+        curriculum: 2
     },
     {
-        creditHours: 4,
-        number: 371,
-        name: "إدارة قواعد البيانات التطبيقية"
+        number: 350,
+        name: "نظم دعم اتخاذ القرار",
+        creditHours: 3,
+        curriculum: 2
     },
     {
+        number: 335,
+        name: "تحليل وتصميم النظم",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 352,
+        name: "نظم المعلومات الجغرافية",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 370,
+        name: "تفاعل الإنسان مع الحاسب",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 372,
+        name: "تجربة المستخدم",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 323,
+        name: "نظم إدارة المعرفة",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 323,
+        name: "نظم إدارة المعرفة",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 354,
+        name: "نظم المعلومات الصحية",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 384,
+        name: "موضوعات مختارة في نظم المعلومات ١",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 336,
+        name: "إدارة مشاريع نظم المعلومات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 380,
+        name: "الأمن السيبراني",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 337,
+        name: "تطوير التطبيقات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 398,
+        name: "التدريب العملي",
         creditHours: 1,
+        curriculum: 2
+    },
+    {
+        number: 401,
+        name: "علاقات الأعمال",
+        creditHours: 1,
+        curriculum: 2
+    },
+    {
+        number: 460,
+        name: "الأعمال الالكترونية",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 492,
+        name: "أمن المعلومات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 495,
+        name: "مشروع تخرج ١",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 410,
+        name: "بنية المؤسسات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 482,
+        name: "استراتيجية وسياسة نظم المعلومات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 496,
+        name: "مشروع تخرج ٢",
+        creditHours: 3,
+        curriculum: 2
+    },
+
+
+    // Old Curriculum
+    {
+        number: 200,
+        name: "مدخل إلى نظم المعلومات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 203,
+        name: "برمجة الويب",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 229,
+        name: "مقدمة في قواعد البيانات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 320,
+        name: "مقدمة في قواعد البيانات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 309,
+        name: "تحليل وتصميم النظم",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 320,
+        name: "مقدمة في قواعد البيانات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 332,
+        name: "نظم دعم اتخاذ القرار",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 339,
+        name: "تحليل وتصميم النظم",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 371,
+        name: "إدارة قواعد البيانات التطبيقية",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
         number: 391,
-        name: "ندوة"
+        name: "ندوة",
+        creditHours: 1,
+        curriculum: 1
     },
     {
-        creditHours: 3,
         number: 394,
-        name: "هندسة المتطلبات"
+        name: "هندسة المتطلبات",
+        creditHours: 3,
+        curriculum: 1
     },
     {
-        creditHours: 3,
         number: 395,
-        name: "موضوعات مختارة في نظم المعلومات ١"
+        name: "موضوعات مختارة في نظم المعلومات ١",
+        creditHours: 3,
+        curriculum: 1
     },
     {
-        creditHours: 3,
         number: 396,
-        name: "موضوعات مختارة في نظم المعلومات ٢"
+        name: "موضوعات مختارة في نظم المعلومات ٢",
+        creditHours: 3,
+        curriculum: 1
     },
     {
-        creditHours: 3,
         number: 397,
-        name: "موضوعات مختارة في نظم المعلومات ٣"
+        name: "موضوعات مختارة في نظم المعلومات ٣",
+        creditHours: 3,
+        curriculum: 1
     },
     {
-        creditHours: 4,
         number: 414,
-        name: "تصميم وبناء الأعمال الالكترونية"
-    },
-    {
-        creditHours: 3,
-        number: 433,
-        name: "أمن المعلومات"
-    },
-    {
-        creditHours: 3,
-        number: 441,
-        name: "إدارة المشاريع"
-    },
-    {
-        creditHours: 3,
-        number: 459,
-        name: "نظم معلومات المؤسسات"
-    },
-    {
-        creditHours: 3,
-        number: 489,
-        name: "أمن المعلومات"
-    },
-    {
-        creditHours: 2,
-        number: 497,
-        name: "مشروع التخرج ١"
-    },
-    {
+        name: "تصميم وبناء الأعمال الالكترونية",
         creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 433,
+        name: "أمن المعلومات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 441,
+        name: "إدارة المشاريع",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 459,
+        name: "نظم معلومات المؤسسات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 489,
+        name: "أمن المعلومات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 497,
+        name: "مشروع التخرج ١",
+        creditHours: 2,
+        curriculum: 1
+    },
+    {
         number: 498,
-        name: "مشروع التخرج ٢"
+        name: "مشروع التخرج ٢",
+        creditHours: 4,
+        curriculum: 1
     }
 ];
 
