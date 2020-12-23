@@ -1053,6 +1053,22 @@ var mgmtCourses = [
     }
 ];
 
+var mktCourses = [
+    {
+        number: 301,
+        name: "مبادئ التسويق",
+        creditHours: 2,
+    },
+];
+
+var finCourses = [
+    {
+        number: 300,
+        name: "مبادئ المالية",
+        creditHours: 3,
+    },
+];
+
 // ** English College ** \\
 var engCourses = [
     {
@@ -1139,6 +1155,11 @@ var fqhCourses = [
     number: 200,
     name: "الفقه",
     creditHours: 2,
+    },
+    {
+        number: 206,
+        name: "فقه التعاملات الإلكترونية",
+        creditHours: 2,
     }
 ];
 

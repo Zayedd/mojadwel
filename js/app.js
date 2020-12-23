@@ -213,6 +213,8 @@ function getCreditHours(dep, number) {
         case "acco": courseObject = accoCourses; break;
         case "econ": courseObject = econCourses; break;
         case "mgmt": courseObject = mgmtCourses; break;
+        case "mkt": courseObject = mktCourses; break;
+        case "fin": courseObject = finCourses; break;
 
         case "eng": courseObject = engCourses; break;
 
@@ -743,6 +745,8 @@ $("select[name='course-dep']").change(function () {
         case "acco": showCourseNumbers(accoCourses); break;
         case "econ": showCourseNumbers(econCourses); break;
         case "mgmt": showCourseNumbers(mgmtCourses); break;
+        case "mkt": showCourseNumbers(mktCourses); break;
+        case "fin": showCourseNumbers(finCourses); break;
 
         case "eng": showCourseNumbers(engCourses); break;
 
