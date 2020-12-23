@@ -20,9 +20,31 @@ var totalCredits = 0;
 // TODO: Refactor to get courses from the backend
 function showCourseNumbers(arry) {
     $("option[value='courseNumber']").remove();
+    $("select[name='course-no'] optgroup").remove();
+
+    let oldCourses = [];
+    let newCourses = [];
     arry.forEach(function(element){
-        $("select[name='course-no']").append("<option value='courseNumber'>" + element.number + " - " + element.name +"</option>");
+        if (element.curriculum && element.curriculum === 2) {
+            let el = $("<option value='courseNumber'></option>").text(element.number + " - " + element.name);
+            newCourses.push(el);
+        } else {
+            let el = $("<option value='courseNumber'></option>").text(element.number + " - " + element.name);
+            oldCourses.push(el);
+        }
     });
+
+    if (newCourses.length > 0) {
+        let optGroup1 = $("<optgroup label='الخطة الجديدة' />")
+        optGroup1.append(newCourses);
+        $("select[name='course-no']").append(optGroup1);
+
+        let optGroup2 = $("<optgroup label='الخطة القديمة' />")
+        optGroup2.append(oldCourses);
+        $("select[name='course-no']").append(optGroup2);
+    } else {
+        oldCourses.forEach(c => $("select[name='course-no']").append(c));
+    }
 }
 
 // TODO: Move to Backend
@@ -706,7 +728,8 @@ $("select[name='gender']").change(function () {
 
 // Change course numbers when department is changed
 $("select[name='course-dep']").change(function () {
-    switch ($("select[name='course-dep'] option:selected").attr("value")) {
+    let selectedDep = $("select[name='course-dep'] option:selected").attr("value");
+    switch (selectedDep) {
         case "cs": showCourseNumbers(csCourses); break;
         case "is": showCourseNumbers(isCourses); break;
         case "it": showCourseNumbers(itCourses); break;

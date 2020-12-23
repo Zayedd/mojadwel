@@ -1,184 +1,315 @@
 // ** CS College ** \\
 var csCourses = [
+    // New Curriculum
     {
-        creditHours: 3,
-        number: 104,
-        name: "تراكيب محددة"
-    },
-    {
-        creditHours: 3,
         number: 114,
-        name: "تراكيب محددة ١"
-    },
-    {
+        name: "تراكيب محددة ١",
         creditHours: 3,
-        number: 106,
-        name: "المنطق الرقمي"
+        curriculum: 2
     },
     {
-        creditHours: 4,
-        number: 125,
-        name: "تصميم المنطق الرقمي"
-    },
-    {
-        creditHours: 4,
-        number: 140,
-        name: "برمجة الحاسبات ١"
-    },
-    {
-        creditHours: 4,
-        number: 141,
-        name: "برمجة الحاسبات ٢"
-    },
-    {
-        creditHours: 4,
         number: 150,
-        name: "مقدمة في برمجة الحاسبات"
+        name: "مقدمة في برمجة الحاسبات",
+        creditHours: 4,
+        curriculum: 2
     },
     {
-        creditHours: 4,
         number: 151,
-        name: "البرمجة الشيئية"
+        name: "البرمجة الشيئية",
+        creditHours: 4,
+        curriculum: 2
     },
     {
-        creditHours: 2,
+        number: 125,
+        name: "تصميم المنطق الرقمي",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
         number: 180,
-        name: "الأمن السيبراني والأخلاقيات"
-    },
-    {
-        creditHours: 3,
-        number: 205,
-        name: "تراكيب محددة ٢"
-    },
-    {
-        creditHours: 3,
-        number: 215,
-        name: "تصميم وتحليل الخوارزميات"
-    },
-    {
-        creditHours: 4,
-        number: 220,
-        name: "تنظيم حاسبات وبرمجة التجميع"
-    },
-    {
-        creditHours: 4,
-        number: 221,
-        name: "عمارة الحاسبات"
-    },
-    {
-        creditHours: 4,
-        number: 228,
-        name: "عمارة الحاسبات"
-    },
-    {
-        creditHours: 4,
-        number: 224,
-        name: "تنظيم الحاسبات"
-    },
-    {
-        creditHours: 4,
-        number: 225,
-        name: "أساسيات أنظمة الحاسبات"
-    },
-    {
-        creditHours: 4,
-        number: 242,
-        name: "تراكيب البيانات"
-    },
-    {
-        creditHours: 4,
-        number: 252,
-        name: "تراكيب البيانات"
-    },
-    {
-        creditHours: 3,
-        number: 310,
-        name: "هندسة البرمجيات"
-    },
-    {
-        creditHours: 4,
-        number: 322,
-        name: "نظم التشغيل"
-    },
-    {
-        creditHours: 4,
-        number: 330,
-        name: "شبكات الحاسب"
-    },
-    {
-        creditHours: 3,
-        number: 340,
-        name: "ذكاء اصطناعي"
-    },
-    {
-        creditHours: 3,
-        number: 344,
-        name: "مبادئ لغات البرمجة"
-    },
-    {
-        creditHours: 3,
-        number: 370,
-        name: "مبادئ قواعد البيانات"
-    },
-    {
-        creditHours: 1,
-        number: 391,
-        name: "ندوة"
-    },
-    {
-        creditHours: 3,
-        number: 401,
-        name: "التحليل العددي للحوسبة"
-    },
-    {
-        creditHours: 3,
-        number: 403,
-        name: "نظرية الرسومات"
-    },
-    {
-        creditHours: 3,
-        number: 432,
-        name: "أمن الشبكات"
-    },
-    {
-        creditHours: 3,
-        number: 438,
-        name: "تقنيات الانترنت"
-    },
-    {
-        creditHours: 3,
-        number: 439,
-        name: "حوسبة السحاب"
-    },
-    {
-        creditHours: 4,
-        number: 445,
-        name: "المترجمات"
-    },
-    {
-        creditHours: 3,
-        number: 452,
-        name: "التفاعل بين الإنسان والحاسب"
-    },
-    {
-        creditHours: 3,
-        number: 471,
-        name: "نظم إدراة قواعد البيانات"
-    },
-    {
-        creditHours: 1,
-        number: 480,
-        name: "التدريب العملي"
-    },
-    {
+        name: "الأمن السيبراني والأخلاقيات",
         creditHours: 2,
-        number: 492,
-        name: "مشروع تخرج ١"
+        curriculum: 2
     },
     {
+        number: 205,
+        name: "تراكيب محددة ٢",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 252,
+        name: "تراكيب البيانات",
         creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 228,
+        name: "عمارة الحاسبات",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 216,
+        name: "تحليل وتصميم الخوارزميات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 290,
+        name: "هندسة البرمجيات ١",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 222,
+        name: "أنظمة التشغيل",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 330,
+        name: "شبكات الحاسب",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 361,
+        name: "الذكاء الاصطناعي",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 392,
+        name: "هندسة البرمجيات ٢",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 370,
+        name: "مبادئ قواعد البيانات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 351,
+        name: "التفاعل بين الإنسان والحاسوب",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 383,
+        name: "ندوة التطوير المهني",
+        creditHours: 2,
+        curriculum: 2
+    },
+    {
+        number: 362,
+        name: "التدريب العملي",
+        creditHours: 1,
+        curriculum: 2
+    },
+    {
+        number: 334,
+        name: "أمن المعلومات",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 445,
+        name: "المترجمات",
+        creditHours: 4,
+        curriculum: 2
+    },
+    {
+        number: 427,
+        name: "النظم الموزعة",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
+        number: 495,
+        name: "مشروع التخرج ١",
+        creditHours: 2,
+        curriculum: 2
+    },
+    {
+        number: 497,
+        name: "مشروع التخرج ٢",
+        creditHours: 3,
+        curriculum: 2
+    },
+
+
+
+    // Old Curriculum
+    {
+        number: 104,
+        name: "تراكيب محددة",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 106,
+        name: "المنطق الرقمي",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 140,
+        name: "برمجة الحاسبات ١",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 141,
+        name: "برمجة الحاسبات ٢",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 215,
+        name: "تصميم وتحليل الخوارزميات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 220,
+        name: "تنظيم حاسبات وبرمجة التجميع",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 221,
+        name: "عمارة الحاسبات",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 224,
+        name: "تنظيم الحاسبات",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 225,
+        name: "أساسيات أنظمة الحاسبات",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 242,
+        name: "تراكيب البيانات",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 310,
+        name: "هندسة البرمجيات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 322,
+        name: "نظم التشغيل",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 330,
+        name: "شبكات الحاسب",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 340,
+        name: "ذكاء اصطناعي",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 344,
+        name: "مبادئ لغات البرمجة",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 370,
+        name: "مبادئ قواعد البيانات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 391,
+        name: "ندوة",
+        creditHours: 1,
+        curriculum: 1
+    },
+    {
+        number: 401,
+        name: "التحليل العددي للحوسبة",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 403,
+        name: "نظرية الرسومات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 432,
+        name: "أمن الشبكات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 438,
+        name: "تقنيات الانترنت",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 439,
+        name: "حوسبة السحاب",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 445,
+        name: "المترجمات",
+        creditHours: 4,
+        curriculum: 1
+    },
+    {
+        number: 452,
+        name: "التفاعل بين الإنسان والحاسب",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 471,
+        name: "نظم إدراة قواعد البيانات",
+        creditHours: 3,
+        curriculum: 1
+    },
+    {
+        number: 480,
+        name: "التدريب العملي",
+        creditHours: 1,
+        curriculum: 1
+    },
+    {
+        number: 492,
+        name: "مشروع تخرج ١",
+        creditHours: 2,
+        curriculum: 1
+    },
+    {
         number: 493,
-        name: "مشروع تخرج ٢"
+        name: "مشروع تخرج ٢",
+        creditHours: 4,
+        curriculum: 1
     },
 ];
 
