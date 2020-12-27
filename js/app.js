@@ -796,7 +796,7 @@ $("#getSections").click(function () {
     loader.toggleClass("d-none");
 
 
-    $.getJSON('https://www.whateverorigin.org/get?url=' +
+    $.getJSON('http://www.whateverorigin.org/get?url=' +
         encodeURIComponent('https://iussb.imamu.edu.sa/PROD_ar/bwckctlg.p_disp_listcrse?term_in=144210&subj_in='
         + $("select[name='course-dep'] option:selected").text().substring(0,3) + '&crse_in='
         + $("select[name='course-no'] option:selected").text().substring(0,3)
