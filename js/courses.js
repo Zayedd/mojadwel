@@ -382,12 +382,6 @@ var isCourses = [
         curriculum: 2
     },
     {
-        number: 323,
-        name: "نظم إدارة المعرفة",
-        creditHours: 3,
-        curriculum: 2
-    },
-    {
         number: 354,
         name: "نظم المعلومات الصحية",
         creditHours: 3,
