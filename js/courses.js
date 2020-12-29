@@ -3,7 +3,7 @@ var csCourses = [
     // New Curriculum
     {
         number: 114,
-        name: "تراكيب محددة ١",
+        name: "تراكيب محدد١",
         creditHours: 3,
         curriculum: 2
     },
