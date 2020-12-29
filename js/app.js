@@ -81,11 +81,11 @@ function getTextTime(tbody) {
         textTime += time + " : " + days + "<br/>";
     }
     return textTime
-        .replaceAll("U", "أحد ")
-        .replaceAll("M", "اثنين ")
-        .replaceAll("T", "ثلاثاء ")
-        .replaceAll("W", "أربعاء ")
-        .replaceAll("R", "خميس ");
+        .replace(/U/g, "أحد ")
+        .replace(/M/g, "اثنين ")
+        .replace(/T/g, "ثلاثاء ")
+        .replace(/W/g, "أربعاء ")
+        .replace(/R/g, "خميس ");
 }
 // TODO: Move to Backend
 function getTeacherName(tbody) {
