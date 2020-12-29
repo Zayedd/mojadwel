@@ -3,7 +3,7 @@ var csCourses = [
     // New Curriculum
     {
         number: 114,
-        name: "تراكيب محدد١",
+        name: "تراكيب محددة١",
         creditHours: 3,
         curriculum: 2
     },
@@ -339,12 +339,7 @@ var isCourses = [
         creditHours: 3,
         curriculum: 2
     },
-    {
-        number: 230,
-        name: "تحليل متطلبات الأعمال",
-        creditHours: 3,
-        curriculum: 2
-    },
+ 
     {
         number: 350,
         name: "نظم دعم اتخاذ القرار",
@@ -611,10 +606,29 @@ var itCourses = [
         number: 301,
         name: "إدارة المشاريع"
     },
+
+    {
+        creditHours: 3,
+        number: 303,
+        name: "التصميم والتقويم المتمحور حول الانسان"
+    },
+
+     {
+        creditHours: 3,
+        number: 311,
+        name: "السياسات والاجراءات الاأمنية"
+    },
+
     {
         creditHours: 3,
         number: 310,
         name: "أمن المعلومات"
+    },
+
+    {
+        creditHours: 3,
+        number: 313,
+        name: "الادلة الجنائية والاستجابة للوقائع"
     },
     {
         creditHours: 3,
@@ -631,11 +645,29 @@ var itCourses = [
         number: 322,
         name: "تخزين البيانات"
     },
+
+     {
+        creditHours: 3,
+        number: 323,
+        name: "تعدين البيانات"
+    },
+
+     {
+        creditHours: 3,
+        number: 330,
+        name: "مفاهيم البرمجة المتقدمة"
+    },
     {
         creditHours: 3,
         number: 331,
         name: "أساسيات العمارة ذات الطبقات المتعددة"
     },
+    {
+        creditHours: 3,
+        number: 332,
+        name: "تطبيق العمارة ذات الطبقات المتعددة"
+    },
+
     {
         creditHours: 4,
         number: 340,
@@ -656,16 +688,44 @@ var itCourses = [
         number: 360,
         name: "نظم التشغيل"
     },
+
+      {
+        creditHours: 3,
+        number: 370,
+        name: "إدارةالشبكات"
+    },
+
     {
         creditHours: 3,
         number: 372,
         name: "إدارة قواعد البيانات"
     },
+
+    {
+
+          creditHours: 3,
+        number: 371,
+        name: "الدعم التقني "
+    },
+
     {
         creditHours: 3,
         number: 390,
         name: "أنظمة الويب"
     },
+
+    {
+        creditHours: 1,
+        number: 391,
+        name: " التدريب العملي"
+    },
+
+      {
+        creditHours: 3,
+        number: 411,
+        name: "تقدير احتياجات النظام"
+    },
+    
     {
         creditHours: 3,
         number: 412,
@@ -676,6 +736,20 @@ var itCourses = [
         number: 413,
         name: "نظم المشاريع"
     },
+
+      {
+        creditHours: 3,
+        number: 414,
+        name: "الحوسبة الاقتصادية "
+    },
+
+      {
+        creditHours: 3,
+        number: 415,
+        name: "اقتناء البرمجيات وتنفيذها "
+    },
+
+
     {
         creditHours: 3,
         number: 420,
@@ -877,6 +951,13 @@ var infoMgmtCourses = [
         number: 351,
         name: "إدارة المشاريع"
     },
+
+     {
+        creditHours: 1,
+        number: 399,
+        name: "التدريب"
+    },
+
     {
         creditHours: 3,
         number: 481,
