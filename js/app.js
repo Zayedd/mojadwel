@@ -337,8 +337,16 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
             sectionLocation = $(allTitles[i]).parent().next().text();
             sectionLocation = sectionLocation.substr(sectionLocation.indexOf("النوع"));
             console.log(sectionLocation.includes("الحاسب"));
+            // console.log(sectionDeatils[3]);
+            // console.log(Math.floor(sectionDeatils[3]/10));
             if (
                 Math.floor(sectionDeatils[3]/10) === 17
+                ||
+                (chosenCourseDep == "cs" && sectionDeatils[3].startsWith("07"))
+                ||
+                (chosenCourseDep == "is" && sectionDeatils[3].startsWith("07"))
+                ||
+                (chosenCourseDep == "fqh" && sectionDeatils[3].startsWith("0"))
                 ||
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "071")
                 ||
@@ -347,14 +355,6 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "073")
                 ||
                 (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "074")
-                ||
-                (chosenCourseDep == "cs" && sectionDeatils[3] === "071")
-                ||
-                (chosenCourseDep == "cs" && sectionDeatils[3] === "072")
-                ||
-                (chosenCourseDep == "cs" && sectionDeatils[3] === "073")
-                ||
-                (chosenCourseDep == "cs" && sectionDeatils[3] === "074")
                 ||
                 (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("0"))
                 ||
