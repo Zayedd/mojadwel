@@ -348,6 +348,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 ||
                 (chosenCourseDep == "fqh" && sectionDeatils[3].startsWith("0"))
                 ||
+                (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("0"))
+                ||
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "071")
                 ||
                 (chosenCourseDep == "phys" && chosenCourseNumber === 103 && sectionDeatils[3] === "072")
