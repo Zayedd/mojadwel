@@ -393,7 +393,7 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 ||
                 (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "380")
                 ||
-                (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("3") && sectionDeatils[3] !== "397")
+                (chosenCourseDep == "thqf" && sectionDeatils[3].startsWith("3"))
             ) {
                 addFoundedSectionToSections(allTitles[i], sectionDeatils, sectionID, chosenCourseDep, chosenCourseNumber);
                 sectionID++;
