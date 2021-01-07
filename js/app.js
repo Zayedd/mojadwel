@@ -385,6 +385,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 ||
                 (chosenCourseDep == "is" && sectionDeatils[3].startsWith("4"))
                 ||
+                (chosenCourseDep == "stat" && sectionDeatils[3] === "380")
+                ||
                 sectionDeatils[3].includes("E") && sectionBranch.includes("الفرع مد الملك عبدالله انتظام-طالبات") && sectionLocation.includes("الحاسب-طالبات")
                 ||
                 (chosenCourseDep == "eng" && chosenCourseNumber === 140 && sectionDeatils[3] === "380")
