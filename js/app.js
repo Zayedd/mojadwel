@@ -385,6 +385,8 @@ function findSections(allTitles, chosenCourseDep, chosenCourseNumber) {
                 ||
                 (chosenCourseDep == "is" && sectionDeatils[3].startsWith("4"))
                 ||
+                (chosenCourseDep == "it" && sectionDeatils[3].startsWith("4"))
+                ||
                 (chosenCourseDep == "cs" && sectionDeatils[3].startsWith("38"))
                 ||
                 (chosenCourseDep == "stat" && sectionDeatils[3] === "380")
