@@ -38,6 +38,12 @@ var csCourses = [
         curriculum: 2
     },
     {
+        number: 216,
+        name: "تحليل وتصميم الخوارزميات",
+        creditHours: 3,
+        curriculum: 2
+    },
+    {
         number: 252,
         name: "تراكيب البيانات",
         creditHours: 4,
@@ -47,12 +53,6 @@ var csCourses = [
         number: 228,
         name: "عمارة الحاسبات",
         creditHours: 4,
-        curriculum: 2
-    },
-    {
-        number: 216,
-        name: "تحليل وتصميم الخوارزميات",
-        creditHours: 3,
         curriculum: 2
     },
     {
@@ -339,7 +339,7 @@ var isCourses = [
         creditHours: 3,
         curriculum: 2
     },
- 
+
     {
         number: 350,
         name: "نظم دعم اتخاذ القرار",
@@ -725,7 +725,7 @@ var itCourses = [
         number: 411,
         name: "تقدير احتياجات النظام"
     },
-    
+
     {
         creditHours: 3,
         number: 412,
